@@ -1,0 +1,16 @@
+=stylesheet_link_tag "products"
+
+-@products.each do |product|
+  .row
+    .col-md-12
+      .panel.panel-default.product-panel
+        .panel-body
+          .row
+            .col-sm-6
+              .page-header
+                %h1 #{product.name} <small>#{number_to_currency product.price}</small>
+              %p.lead
+                =product.description
+            .col-sm-6
+              .product-image.pull-right
+                =image_tag product.photo.url, class: "img-responsive"

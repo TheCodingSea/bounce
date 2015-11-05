@@ -1,0 +1,23 @@
+!!! 5
+%html
+%head
+  %title Empire Events
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  = csrf_meta_tags
+
+%body
+
+%nav.navbar.navbar-default.navbar-static-top
+  .container
+    .navbar-header
+      %a.navbar-brand{href: root_path} Empire Events
+
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          %a{href: public_products_path} Bounce Houses
+
+.row
+  .col-md-10.col-md-offset-1
+    = yield
