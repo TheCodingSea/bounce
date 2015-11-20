@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:public]
+  before_action :authenticate_user!, except: [:public, :show]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index

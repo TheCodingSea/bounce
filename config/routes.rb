@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  resources :checkout
   resources :dashboard
+  resources :line_items
 
   resources :products do
     collection do
@@ -10,6 +13,8 @@ Rails.application.routes.draw do
       get "public_show"
     end
   end
+
+  resources :sales
 
   root "dashboard#index"
   # The priority is based upon order of creation: first created -> highest priority.

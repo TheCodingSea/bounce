@@ -1,0 +1,32 @@
+.panel.panel-default
+  .panel-body
+    %h1.text-center.page-header Checkout
+    -if @sale
+      %table.table
+        %tr
+          %th Name
+          %th Price
+        -@sale.line_items.each do |li|
+          %tr
+            %td=li.product.name
+            %td=number_to_currency li.product.price
+      .row
+        .col-sm-4.col-sm-offset-8
+          %table
+            %tr
+              %td.pull-right
+                %strong Subtotal:
+              %td
+                =number_to_currency @sale.subtotal
+            %tr
+              %td.pull-right
+                %strong Tax:
+              %td
+                =number_to_currency @sale.tax
+            %tr
+              %td.pull-right
+                %strong Total:
+              %td
+                =number_to_currency @sale.total
+    -else
+      %h1 Your cart is empty!

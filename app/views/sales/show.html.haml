@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Subtotal:
+  = @sale.subtotal
+%p
+  %b Tax:
+  = @sale.tax
+%p
+  %b Total:
+  = @sale.total
+
+= link_to 'Edit', edit_sale_path(@sale)
+\|
+= link_to 'Back', sales_path

@@ -16,7 +16,19 @@
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li
-          %a{href: public_products_path} Bounce Houses
+          %a{href: public_products_path} Rentals
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          -if user_signed_in?
+            %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown", "role" => "button", "aria-haspopup" => true, "aria-expanded" => false}
+              #{current_user.email} <span class="caret"></span>
+            %ul.dropdown-menu
+              %li
+                %a{href: products_path} Products
+        %li
+          %a.btn.btn-default{href: new_checkout_path}
+            %span.glyphicon.glyphicon-shopping-cart
+            %span.badge=current_sale.line_items.count
 
 .row
   .col-md-10.col-md-offset-1
