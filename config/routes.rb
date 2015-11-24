@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :charges
   resources :checkout
   resources :dashboard
   resources :line_items
