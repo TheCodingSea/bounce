@@ -32,44 +32,57 @@ RSpec.describe LineItemsController, type: :controller do
   end
 
   describe "POST #create" do
+    let(:date_attributes) { { "date(3i)" => "1", "date(2i)" => "1",
+                              "date(1i)" => "2020" } }
     it "sets current sale" do
-      post :create, line_item: attributes_for(:line_item)
+      post :create, line_item: attributes_for(:line_item), rental: date_attributes
       expect(assigns(:sale)).to be_a(Sale)
     end
 
     context "with valid params" do
       it "assigns a newly created line_item as @line_item" do
-        post :create, line_item: attributes_for(:line_item)
+        post :create, line_item: attributes_for(:line_item), rental: date_attributes
         expect(assigns(:line_item)).to be_a(LineItem)
       end
 
       it "creates a new LineItem" do
         expect_any_instance_of(LineItem).to receive(:save)
-        post :create, line_item: attributes_for(:line_item)
+        post :create, line_item: attributes_for(:line_item), rental: date_attributes
+      end
+
+      it "creates a rental" do
+        allow(LineItem).to receive(:new).and_return line_item
+        expect(Rental).to receive(:create).
+          with(line_item_id: line_item.id, product_id: line_item.product_id,
+               start_date: a_kind_of(Date))
+        post :create, line_item: attributes_for(:line_item), rental: date_attributes
       end
 
       it "saves the sale" do
         allow_any_instance_of(LineItem).to receive(:save).and_return true
         expect_any_instance_of(Sale).to receive(:save)
-        post :create, line_item: attributes_for(:line_item)
+        post :create, line_item: attributes_for(:line_item), rental: date_attributes
       end
 
-      fit "redirects to the cart" do
+      it "redirects to the cart" do
         allow_any_instance_of(LineItem).to receive(:save).and_return true
-        post :create, line_item: attributes_for(:line_item)
+        post :create, line_item: attributes_for(:line_item), rental: date_attributes
         expect(response).to redirect_to(new_checkout_path)
       end
     end
 
     context "with invalid params" do
+      before(:each) do
+        allow_any_instance_of(LineItem).to receive(:valid?).and_return false
+      end
+
       it "assigns a newly created but unsaved line_item as @line_item" do
-        post :create, line_item: attributes_for(:line_item)
+        post :create, line_item: attributes_for(:line_item), rental: date_attributes
         expect(assigns(:line_item)).to be_a_new(LineItem)
       end
 
       it "re-renders the 'products/show' template" do
-        allow_any_instance_of(LineItem).to receive(:save).and_return false
-        post :create, line_item: attributes_for(:line_item)
+        post :create, line_item: attributes_for(:line_item), rental: date_attributes
         expect(response).to render_template("products/show")
       end
     end

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:public, :show]
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.all
@@ -11,6 +11,8 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.includes(:rentals).find(params[:id])
+    @rentals = @product.rentals
   end
 
   def new

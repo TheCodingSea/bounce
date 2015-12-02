@@ -1,3 +1,4 @@
+=stylesheet_link_tag "simple_calendar"
 %p#notice= notice
 
 .row
@@ -10,10 +11,21 @@
               %h1 #{@product.name} <small>#{number_to_currency @product.price}</small>
             %p.lead
               = @product.description
-            /%a.btn.btn-success{href: add_to_sale_path(@product)} Reserve
-            /=form_for LineItem.new do |f|
-            /  =f.submit "Reserve", class: "btn btn-success"
-            =button_to "Reserve", line_items_path(line_item: { product_id: @product.id }), class: "btn btn-success"
+            = month_calendar(events: @rentals, attribute: :start_date) do |date, rentals|
+              = date.day
+              -rentals.each do |rental|
+                Not Available
+
+            =form_for LineItem.new do |f|
+              =f.hidden_field :product_id, value: @product.id
+              =date_select("rental", "date", start_year: Date.today.year, order: [:day, :month, :year])
+              %br
+              %br
+              /%a.btn.btn-success{href: add_to_sale_path(@product)} Reserve
+              /=form_for LineItem.new do |f|
+              /  =f.submit "Reserve", class: "btn btn-success"
+              /=button_to "Reserve", line_items_path(line_item: { product_id: @product.id }), class: "btn btn-success"
+              =submit_tag "Reserve", class: "btn btn-success"
           .col-sm-6
             .product-image.pull-right
               = image_tag @product.photo.url, class: "img-response"

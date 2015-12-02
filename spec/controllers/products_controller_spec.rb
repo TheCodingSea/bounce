@@ -22,6 +22,11 @@ RSpec.describe ProductsController, type: :controller do
       get :show, id: product.to_param
       expect(assigns(:product)).to eq(product)
     end
+
+    it "assigns all rentals as @rentals" do
+      get :show, id: product.to_param
+      expect(assigns(:rentals)).to eq product.rentals
+    end
   end
 
   describe "GET #new" do
