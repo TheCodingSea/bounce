@@ -1,0 +1,67 @@
+.panel.panel-default
+  .panel-body
+    %h1.text-center.page-header Review and Pay
+    %table.table
+      %tr
+        %th Name
+        %th Price
+        %th Rental Date
+      -@sale.line_items.each do |li|
+        %tr
+          %td=li.product.name
+          %td=number_to_currency li.product.price
+          %td=li.rental.start_date
+    .row
+      .col-sm-4.col-sm-offset-8
+        %table
+          %tr
+            %td.pull-right
+              %strong Subtotal:
+            %td
+              =number_to_currency @sale.subtotal
+          %tr
+            %td.pull-right
+              %strong Tax:
+            %td
+              =number_to_currency @sale.tax
+          %tr
+            %td.pull-right
+              %strong Total:
+            %td
+              =number_to_currency @sale.total
+    .row
+      .col-sm-12
+        %h2.text-center Rental Location
+        %table.table
+          %tr
+            %th First Name
+            %th Last Name
+            %th Address 1
+            %th Address 2
+            %th City
+            %th State
+            %th Zip
+          %tr
+            %td=@rental_location.first_name
+            %td=@rental_location.last_name
+            %td=@rental_location.address_1
+            %td=@rental_location.address_2
+            %td=@rental_location.city
+            %td=@rental_location.state
+            %td=@rental_location.zip
+        %a.btn.btn-default{href: cart_path} Edit
+    .row
+      .col-sm-12
+        =form_tag charges_path do
+          %article
+            -if flash[:error].present?
+              #error_explanation
+                %p=flash[:error]
+        
+          %script{src: "https://checkout.stripe.com/checkout.js",
+            class: "stripe-button",
+            "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+            "data-description" => "Empire Events Checkout",
+            "data-amount" => "#{(@sale.total * 100)}",
+            "data-locale" => "auto"}
+

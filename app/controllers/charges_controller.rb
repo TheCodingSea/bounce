@@ -1,7 +1,4 @@
 class ChargesController < ApplicationController
-  def new
-  end
-
   def create
     puts 'XXXXXXXXXXXXXXXXXXXXXXX'
     pp params
@@ -30,8 +27,14 @@ class ChargesController < ApplicationController
     pp charge
     puts 'XXXXXXXXXXXXXXXXXXXXXXX'
 
+    @customer = Customer.create(customer_id: customer["id"], email: customer["email"])
+    @charge   = Charge.create(sale_id: session["sale_id"], charge_id: charge["id"],
+                              amount: @amount, customer_id: @customer.id)
+    @sale     = current_sale
+    @sale.update(customer_id: @customer.id)
+
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to new_charge_path
+    redirect_to review_and_pay_path
   end
 end

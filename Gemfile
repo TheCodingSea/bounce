@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap-sass'
+#gem 'bugsnag'
 gem 'devise'
 gem 'figaro'
 gem 'haml-rails'

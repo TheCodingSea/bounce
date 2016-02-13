@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @rental_location.first_name
+%p
+  %b Last name:
+  = @rental_location.last_name
+%p
+  %b Address 1:
+  = @rental_location.address_1
+%p
+  %b Address 2:
+  = @rental_location.address_2
+%p
+  %b City:
+  = @rental_location.city
+%p
+  %b State:
+  = @rental_location.state
+%p
+  %b Zip:
+  = @rental_location.zip
+
+= link_to 'Edit', edit_rental_location_path(@rental_location)
+\|
+= link_to 'Back', rental_locations_path

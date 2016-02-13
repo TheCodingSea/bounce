@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :customers
   devise_for :users
 
   resources :charges
-  resources :checkout
   resources :dashboard
   resources :line_items
 
@@ -15,7 +15,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :rental_locations
   resources :sales
+
+  get "cart" => "checkout#cart", as: "cart"
+  get "review_and_pay" => "checkout#review_and_pay", as: "review_and_pay"
+  get "thank_you" => "checkout#thank_you", as: "thank_you"
 
   root "dashboard#index"
   # The priority is based upon order of creation: first created -> highest priority.

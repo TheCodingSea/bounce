@@ -1,0 +1,33 @@
+%h1 Listing rental_locations
+
+%table
+  %thead
+    %tr
+      %th First name
+      %th Last name
+      %th Address 1
+      %th Address 2
+      %th City
+      %th State
+      %th Zip
+      %th
+      %th
+      %th
+
+  %tbody
+    - @rental_locations.each do |rental_location|
+      %tr
+        %td= rental_location.first_name
+        %td= rental_location.last_name
+        %td= rental_location.address_1
+        %td= rental_location.address_2
+        %td= rental_location.city
+        %td= rental_location.state
+        %td= rental_location.zip
+        %td= link_to 'Show', rental_location
+        %td= link_to 'Edit', edit_rental_location_path(rental_location)
+        %td= link_to 'Destroy', rental_location, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Rental location', new_rental_location_path

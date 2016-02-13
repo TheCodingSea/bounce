@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe ProductsController, type: :controller do
   let(:product) { create :product }
 
+  before(:each) do
+    allow(controller).to receive :authenticate_user!
+  end
+
   describe "GET #index" do
     it "assigns all products as @products" do
       get :index
