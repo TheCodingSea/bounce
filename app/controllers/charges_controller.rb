@@ -32,6 +32,8 @@ class ChargesController < ApplicationController
                               amount: @amount, customer_id: @customer.id)
     @sale     = current_sale
     @sale.update(customer_id: @customer.id)
+    #FIXME send email
+    redirect_to thank_you_path
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

@@ -46,6 +46,8 @@ GEM
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bugsnag (2.8.12)
+      json (~> 1.7, >= 1.7.7)
     builder (3.2.2)
     byebug (6.0.2)
     climate_control (0.0.3)
@@ -231,6 +233,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  bugsnag
   byebug
   coffee-rails (~> 4.1.0)
   devise

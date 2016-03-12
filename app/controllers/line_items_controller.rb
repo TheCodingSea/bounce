@@ -21,15 +21,16 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.valid?
+        @sale.save
+        set_current_sale(@sale.id)
+        @line_item.sale_id = @sale.id
         @line_item.save
         #Check that date is available
         date = Date.parse( params[:rental].to_a.sort.collect{|c| c[1]}.join("-") )
         @rental = Rental.create(line_item_id: @line_item.id,
                                 product_id: @line_item.product_id, start_date: date)
-        @sale.save
-        set_current_sale(@sale.id)
 
-        format.html { redirect_to new_checkout_path, notice: 'Product was added to your cart.' }
+        format.html { redirect_to cart_path, notice: 'Product was added to your cart.' }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render "products/show" }

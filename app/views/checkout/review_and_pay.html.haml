@@ -13,19 +13,19 @@
           %td=li.rental.start_date
     .row
       .col-sm-4.col-sm-offset-8
-        %table
+        %table.table
           %tr
-            %td.pull-right
+            %td
               %strong Subtotal:
             %td
               =number_to_currency @sale.subtotal
           %tr
-            %td.pull-right
+            %td
               %strong Tax:
             %td
               =number_to_currency @sale.tax
           %tr
-            %td.pull-right
+            %td
               %strong Total:
             %td
               =number_to_currency @sale.total

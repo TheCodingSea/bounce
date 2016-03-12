@@ -10,9 +10,12 @@ class CheckoutController < ApplicationController
 
   def review_and_pay
     @sale = Sale.includes(line_items: [:product, :rental]).find_by_id(session[:sale_id])
+    @sale.total!
     @rental_location = @sale.rental_location
   end
 
   def thank_you
+    @sale = Sale.includes(line_items: [:product, :rental]).find_by_id(session[:sale_id])
+    @rental_location = @sale.rental_location
   end
 end
