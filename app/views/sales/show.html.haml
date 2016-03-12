@@ -1,15 +1,77 @@
+= link_to 'All Sales', sales_path, class: "btn btn-default"
+
 %p#notice= notice
 
-%p
-  %b Subtotal:
-  = @sale.subtotal
-%p
-  %b Tax:
-  = @sale.tax
-%p
-  %b Total:
-  = @sale.total
+%h1 Sale #{@sale.id}
+%table.table
+  %thead
+    %tr
+      %th Subtotal
+      %th Tax
+      %th Total
+  %tbody
+    %tr
+      %td= number_to_currency @sale.subtotal
+      %td= number_to_currency @sale.tax
+      %td= number_to_currency @sale.total
 
-= link_to 'Edit', edit_sale_path(@sale)
-\|
-= link_to 'Back', sales_path
+%h1 Line Items
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Product ID
+      %th Name
+      %th Price
+      %th Rental ID
+      %th Rental Date
+
+  %tbody
+    -@line_items.each do |li|
+      %tr
+        %td= li.id
+        %td= li.product.id
+        %td= link_to li.product.name, product_path(li.product)
+        %td= number_to_currency li.product.price
+        %td= li.rental.id
+        %td= li.rental.start_date
+
+%h1 Rental Location
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th First Name
+      %th Last Name
+      %th Address 1
+      %th Address 2
+      %th City
+      %th State
+      %th Zip
+
+  %tbody
+    %tr
+      %td= @rental_location.id
+      %td= @rental_location.first_name
+      %td= @rental_location.last_name
+      %td= @rental_location.address_1
+      %td= @rental_location.address_2
+      %td= @rental_location.city
+      %td= @rental_location.state
+      %td= @rental_location.zip
+
+%h1 Customer #{@customer.id}
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Email
+      %th Swipe Customer ID
+      %th
+
+  %tbody
+    %tr
+      %td= @customer.id
+      %td= @customer.email
+      %td= @customer.customer_id
+      %td= link_to "View", customer_path(@customer)

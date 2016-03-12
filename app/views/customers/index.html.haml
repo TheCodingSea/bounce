@@ -1,10 +1,11 @@
-%h1 Listing customers
+%h1 Listing Customers
 
-%table
+%table.table
   %thead
     %tr
-      %th Customer
+      %th ID
       %th Email
+      %th Swipe Customer ID
       %th
       %th
       %th
@@ -12,12 +13,13 @@
   %tbody
     - @customers.each do |customer|
       %tr
-        %td= customer.customer_id
+        %td= customer.id
         %td= customer.email
+        %td= customer.customer_id
         %td= link_to 'Show', customer
         %td= link_to 'Edit', edit_customer_path(customer)
         %td= link_to 'Destroy', customer, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Customer', new_customer_path
+= link_to 'New Customer', new_customer_path, class: "btn btn-primary"

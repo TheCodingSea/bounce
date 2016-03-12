@@ -1,12 +1,38 @@
+= link_to 'All Customers', customers_path, class: "btn btn-default"
+
 %p#notice= notice
 
-%p
-  %b Customer:
-  = @customer.customer_id
-%p
-  %b Email:
-  = @customer.email
+%h1 Customer #{@customer.id}
+%table.table
+  %thead
+    %tr
+      %th Email
+      %th Swipe Customer ID
+      %th
 
-= link_to 'Edit', edit_customer_path(@customer)
-\|
-= link_to 'Back', customers_path
+  %tbody
+    %tr
+      %td= @customer.email
+      %td= @customer.customer_id
+      %td= link_to 'Edit', edit_customer_path(@customer), class: "btn btn-primary"
+
+%h1 Sales
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Subtotal
+      %th Tax
+      %th Total
+      %th Created
+      %th
+
+  %tbody
+    -@sales.each do |sale|
+      %tr
+        %td= sale.id
+        %td= number_to_currency sale.subtotal
+        %td= number_to_currency sale.tax
+        %td= number_to_currency sale.total
+        %td= sale.created_at
+        %td= link_to 'View', sale_path(sale), class: "btn btn-default"

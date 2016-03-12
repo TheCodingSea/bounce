@@ -1,28 +1,23 @@
 class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
-  # GET /sales
-  # GET /sales.json
   def index
     @sales = Sale.all
   end
 
-  # GET /sales/1
-  # GET /sales/1.json
   def show
+    @line_items = LineItem.includes(:product, :rental).where(sale_id: @sale.id)
+    @rental_location = @sale.rental_location
+    @customer = @sale.customer
   end
 
-  # GET /sales/new
   def new
     @sale = Sale.new
   end
 
-  # GET /sales/1/edit
   def edit
   end
 
-  # POST /sales
-  # POST /sales.json
   def create
     @sale = Sale.new(sale_params)
 
