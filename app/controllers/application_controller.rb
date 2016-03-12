@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
       Sale.find(session[:sale_id])
     end
   end
+
+  def clear_current_sale
+    session[:sale_id] = nil
+  end
 end

@@ -15,7 +15,7 @@ class CheckoutController < ApplicationController
   end
 
   def thank_you
-    @sale = Sale.includes(line_items: [:product, :rental]).find_by_id(session[:sale_id])
+    @sale = Sale.includes(line_items: [:product, :rental]).find_by_id(params[:sale_id])
     @rental_location = @sale.rental_location
   end
 end
