@@ -36,20 +36,27 @@
     .col-md-6
       .form-group
         .col-sm-3
+          = f.label :phone, class: "control-label"
+        .col-sm-9
+          = f.text_field :phone, class: "form-control"
+    .col-md-6
+      .form-group
+        .col-sm-3
           = f.label :city, class: "control-label"
         .col-sm-9
           = f.text_field :city, class: "form-control"
-    .col-md-3
+  .row
+    .col-md-6
       .form-group
-        .col-sm-6
+        .col-sm-3
           = f.label :state, class: "control-label"
-        .col-sm-6
+        .col-sm-9
           = f.text_field :state, class: "form-control"
-    .col-md-3
+    .col-md-6
       .form-group
-        .col-sm-2
+        .col-sm-3
           = f.label :zip, class: "control-label"
-        .col-sm-10
+        .col-sm-9
           = f.text_field :zip, class: "form-control"
       .actions
         = f.submit 'Save', class: "btn btn-primary"
