@@ -26,7 +26,7 @@ class LineItemsController < ApplicationController
         set_current_sale(@sale.id)
         @line_item.sale_id = @sale.id
         @line_item.save
-        #Check that date is available
+        #FIXME Check that date is available
         date = Date.parse( params[:rental].to_a.sort.collect{|c| c[1]}.join("-") )
         @rental = Rental.create(line_item_id: @line_item.id,
                                 product_id: @line_item.product_id, start_date: date)

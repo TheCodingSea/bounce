@@ -9,11 +9,13 @@
       %th Subtotal
       %th Tax
       %th Total
+      %th Completed
   %tbody
     %tr
       %td= number_to_currency @sale.subtotal
       %td= number_to_currency @sale.tax
       %td= number_to_currency @sale.total
+      %td= @sale.completed_at
 
 %h1 Line Items
 %table.table

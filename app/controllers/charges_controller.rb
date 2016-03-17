@@ -31,7 +31,7 @@ class ChargesController < ApplicationController
     @charge   = Charge.create(sale_id: session["sale_id"], charge_id: charge["id"],
                               amount: @amount, customer_id: @customer.id)
     @sale     = current_sale
-    @sale.update(customer_id: @customer.id)
+    @sale.update(customer_id: @customer.id, completed_at: Time.now)
     #FIXME send email
     clear_current_sale
     redirect_to thank_you_path(sale_id: @sale.id)

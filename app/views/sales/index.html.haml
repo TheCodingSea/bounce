@@ -1,11 +1,13 @@
 %h1 Listing sales
 
-%table
+%table.table
   %thead
     %tr
+      %th ID
       %th Subtotal
       %th Tax
       %th Total
+      %th Completed
       %th
       %th
       %th
@@ -13,9 +15,11 @@
   %tbody
     - @sales.each do |sale|
       %tr
-        %td= sale.subtotal
-        %td= sale.tax
-        %td= sale.total
+        %td= sale.id
+        %td= number_to_currency sale.subtotal
+        %td= number_to_currency sale.tax
+        %td= number_to_currency sale.total
+        %td=sale.completed_at
         %td= link_to 'Show', sale
         %td= link_to 'Edit', edit_sale_path(sale)
         %td= link_to 'Destroy', sale, :method => :delete, :data => { :confirm => 'Are you sure?' }
