@@ -9,16 +9,10 @@ class ChargesController < ApplicationController
     pp @amount
     puts 'XXXXXXXXXXXXXXXXXXXXXXX'
 
-    customer = Stripe::Customer.create(
-      email:  params[:stripeEmail],
-      source: params[:stripeToken]
-    )
-    puts 'XXXXXXXXXXXXXXXXXXXXXXX'
-    pp customer
-    puts 'XXXXXXXXXXXXXXXXXXXXXXX'
+    find_customer
 
     charge = Stripe::Charge.create(
-      customer: customer.id,
+      customer: @customer.customer_id,
       amount: @amount,
       description: "Rails Stripe Customer",
       currency: "usd"
@@ -27,7 +21,6 @@ class ChargesController < ApplicationController
     pp charge
     puts 'XXXXXXXXXXXXXXXXXXXXXXX'
 
-    @customer = Customer.create(customer_id: customer["id"], email: customer["email"])
     @charge   = Charge.create(sale_id: session["sale_id"], charge_id: charge["id"],
                               amount: @amount, customer_id: @customer.id)
     @sale     = current_sale
@@ -39,5 +32,19 @@ class ChargesController < ApplicationController
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to review_and_pay_path
+  end
+
+  private
+  def find_customer
+    found_customer = Customer.find_by_email params[:stripeEmail]
+    if found_customer.nil?
+      swipe_customer = Stripe::Customer.create(
+        email:  params[:stripeEmail],
+        source: params[:stripeToken]
+      )
+      @customer = Customer.create(customer_id: swipe_customer["id"], email: swipe_customer["email"])
+    else
+      @customer = found_customer
+    end
   end
 end
