@@ -19,22 +19,24 @@ class LineItemsController < ApplicationController
   def create
     @sale = current_sale
     @line_item = LineItem.new(line_item_params)
+    date = Date.parse( params[:rental].to_a.sort.collect{|c| c[1]}.join("-") )
+    @rental = Rental.new(product_id: @line_item.product_id, start_date: date)
 
     respond_to do |format|
-      if @line_item.valid?
+      if @line_item.valid? && @rental.valid?
         @sale.save
         set_current_sale(@sale.id)
         @line_item.sale_id = @sale.id
         @line_item.save
-        #FIXME Check that date is available
-        date = Date.parse( params[:rental].to_a.sort.collect{|c| c[1]}.join("-") )
-        @rental = Rental.create(line_item_id: @line_item.id,
-                                product_id: @line_item.product_id, start_date: date)
+        @rental.line_item_id = @line_item.id
+        @rental.save
 
         format.html { redirect_to cart_path, notice: 'Product was added to your cart.' }
         format.json { render :show, status: :created, location: @line_item }
       else
-        format.html { render "products/show" }
+        @product = @line_item.product
+        @rentals = @product.rentals
+        format.html { render "products/show", notice: gather_errors }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
@@ -67,5 +69,9 @@ class LineItemsController < ApplicationController
 
     def line_item_params
       params.require(:line_item).permit(:product_id)
+    end
+
+    def gather_errors
+      @line_item.errors
     end
 end

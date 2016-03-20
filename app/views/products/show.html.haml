@@ -5,6 +5,20 @@
   .col-md-12
     .panel.panel-default
       .panel-body
+        - if @line_item && @line_item.errors.any?
+          #error_explanation.alert-danger
+            .panel-body
+              %h2= "#{pluralize(@line_item.errors.count, "error")} prohibited this line item from being saved:"
+              %ul
+                - @line_item.errors.full_messages.each do |msg|
+                  %li= msg
+        - if @rental && @rental.errors.any?
+          #error_explanation.alert-danger
+            .panel-body
+              %h2= "#{pluralize(@rental.errors.count, "error")} prohibited this rental from being saved:"
+              %ul
+                - @rental.errors.full_messages.each do |msg|
+                  %li= msg
         .row
           .col-sm-6
             .page-header
@@ -18,7 +32,7 @@
 
             =form_for LineItem.new do |f|
               =f.hidden_field :product_id, value: @product.id
-              =date_select("rental", "date", start_year: Date.today.year, order: [:day, :month, :year])
+              =date_select("rental", "start_date", start_year: Date.today.year, order: [:day, :month, :year])
               %br
               %br
               /%a.btn.btn-success{href: add_to_sale_path(@product)} Reserve
