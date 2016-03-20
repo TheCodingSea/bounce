@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   resources :charges
   resources :dashboard
-  resources :line_items
+  resources :line_items do
+    member do
+      delete "remove_from_cart"
+    end
+  end
 
   resources :products do
     collection do

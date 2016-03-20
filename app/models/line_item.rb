@@ -1,7 +1,7 @@
 class LineItem < ActiveRecord::Base
   belongs_to :sale
   belongs_to :product
-  has_one :rental
+  has_one :rental, dependent: :destroy
 
   delegate :price, to: :product, prefix: "product"
 

@@ -7,44 +7,34 @@
           %th Name
           %th Price
           %th Rental Date
+          %th
         -@sale.line_items.each do |li|
           %tr
             %td=li.product.name
             %td=number_to_currency li.product.price
             %td=li.rental.start_date
+            %td=link_to 'Remove', remove_from_cart_line_item_path(li), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
       .row
         .col-sm-4.col-sm-offset-8
-          %table
+          %table.table
             %tr
               %td.pull-right
                 %strong Subtotal:
               %td
-                =number_to_currency @sale.subtotal
+                =number_to_currency @sale.calculate_subtotal
             %tr
               %td.pull-right
                 %strong Tax:
               %td
-                =number_to_currency @sale.tax
+                =number_to_currency @sale.calculate_tax
             %tr
               %td.pull-right
                 %strong Total:
               %td
-                =number_to_currency @sale.total
+                =number_to_currency @sale.calculate_total
       .row
         .col-sm-12
           %h2.text-center Rental Location
           =render "rental_locations/form"
-          /=form_tag charges_path do
-          /  %article
-          /    -if flash[:error].present?
-          /      #error_explanation
-          /        %p=flash[:error]
-          /
-          /  %script{src: "https://checkout.stripe.com/checkout.js",
-          /    class: "stripe-button",
-          /    "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
-          /    "data-description" => "Empire Events Checkout",
-          /    "data-amount" => "#{(@sale.total * 100)}",
-          /    "data-locale" => "auto"}
     -else
       %h1 Your cart is empty!

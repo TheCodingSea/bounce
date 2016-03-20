@@ -1,6 +1,7 @@
 class LineItemsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new]
-  before_action :set_line_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_line_item, only: [:show, :edit, :update, :destroy,
+                                       :remove_from_cart]
 
   def index
     @line_items = LineItem.all
@@ -52,6 +53,11 @@ class LineItemsController < ApplicationController
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def remove_from_cart
+    @line_item.destroy
+    redirect_to cart_path
   end
 
   def destroy

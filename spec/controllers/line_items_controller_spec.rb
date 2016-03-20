@@ -124,6 +124,18 @@ RSpec.describe LineItemsController, type: :controller do
     end
   end
 
+  describe "DELETE #remove_from_cart" do
+    it "destroys the requested line_item" do
+      expect_any_instance_of(LineItem).to receive(:destroy)
+        delete :remove_from_cart, id: line_item.to_param
+    end
+
+    it "redirects to the line_items list" do
+      delete :remove_from_cart, id: line_item.to_param
+      expect(response).to redirect_to cart_path
+    end
+  end
+
   describe "DELETE #destroy" do
     it "destroys the requested line_item" do
       expect_any_instance_of(LineItem).to receive(:destroy)
@@ -135,6 +147,4 @@ RSpec.describe LineItemsController, type: :controller do
       expect(response).to redirect_to(line_items_url)
     end
   end
-
-
 end
