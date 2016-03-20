@@ -6,6 +6,7 @@ class CheckoutController < ApplicationController
     else
       @rental_location = RentalLocation.new()
     end
+    @disabled = (@sale.line_items.empty? ? true : false)
   end
 
   def review_and_pay

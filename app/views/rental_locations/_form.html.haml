@@ -6,57 +6,58 @@
         - @rental_location.errors.full_messages.each do |msg|
           %li= msg
 
-  .row
-    .col-md-6
-      .form-group
-        .col-sm-3
-          = f.label :first_name, class: "control-label"
-        .col-sm-9
-          = f.text_field :first_name, class: "form-control"
-    .col-md-6
-      .form-group
-        .col-sm-3
-          = f.label :last_name, class: "control-label"
-        .col-sm-9
-          = f.text_field :last_name, class: "form-control"
-  .row
-    .col-md-6
-      .form-group
-        .col-sm-3
-          = f.label :address_1, class: "control-label"
-        .col-sm-9
-          = f.text_field :address_1, class: "form-control"
-    .col-md-6
-      .form-group
-        .col-sm-3
-          = f.label :address_2, class: "control-label"
-        .col-sm-9
-          = f.text_field :address_2, class: "form-control"
-  .row
-    .col-md-6
-      .form-group
-        .col-sm-3
-          = f.label :phone, class: "control-label"
-        .col-sm-9
-          = f.text_field :phone, class: "form-control"
-    .col-md-6
-      .form-group
-        .col-sm-3
-          = f.label :city, class: "control-label"
-        .col-sm-9
-          = f.text_field :city, class: "form-control"
-  .row
-    .col-md-6
-      .form-group
-        .col-sm-3
-          = f.label :state, class: "control-label"
-        .col-sm-9
-          = f.text_field :state, class: "form-control"
-    .col-md-6
-      .form-group
-        .col-sm-3
-          = f.label :zip, class: "control-label"
-        .col-sm-9
-          = f.text_field :zip, class: "form-control"
-      .actions
-        = f.submit 'Save', class: "btn btn-primary"
+  %fieldset{disabled: @disabled}
+    .row
+      .col-md-6
+        .form-group
+          .col-sm-3
+            = f.label :first_name, class: "control-label"
+          .col-sm-9
+            = f.text_field :first_name, class: "form-control"
+      .col-md-6
+        .form-group
+          .col-sm-3
+            = f.label :last_name, class: "control-label"
+          .col-sm-9
+            = f.text_field :last_name, class: "form-control"
+    .row
+      .col-md-6
+        .form-group
+          .col-sm-3
+            = f.label :address_1, class: "control-label"
+          .col-sm-9
+            = f.text_field :address_1, class: "form-control"
+      .col-md-6
+        .form-group
+          .col-sm-3
+            = f.label :address_2, class: "control-label"
+          .col-sm-9
+            = f.text_field :address_2, class: "form-control"
+    .row
+      .col-md-6
+        .form-group
+          .col-sm-3
+            = f.label :phone, class: "control-label"
+          .col-sm-9
+            = f.text_field :phone, class: "form-control"
+      .col-md-6
+        .form-group
+          .col-sm-3
+            = f.label :city, class: "control-label"
+          .col-sm-9
+            = f.text_field :city, class: "form-control"
+    .row
+      .col-md-6
+        .form-group
+          .col-sm-3
+            = f.label :state, class: "control-label"
+          .col-sm-9
+            = f.text_field :state, class: "form-control"
+      .col-md-6
+        .form-group
+          .col-sm-3
+            = f.label :zip, class: "control-label"
+          .col-sm-9
+            = f.text_field :zip, class: "form-control"
+        .actions
+          = f.submit 'Save', class: "btn btn-primary"
