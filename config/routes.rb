@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :charges
-  resources :dashboard
+  resources :dashboard do
+    collection do
+      get "admin"
+    end
+  end
   resources :line_items do
     member do
       delete "remove_from_cart"

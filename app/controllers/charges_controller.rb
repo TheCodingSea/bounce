@@ -1,4 +1,11 @@
 class ChargesController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+  layout "application"
+
+  def index
+    @charges = Charge.all
+  end
+
   def create
     puts 'XXXXXXXXXXXXXXXXXXXXXXX'
     pp params

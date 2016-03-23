@@ -1,0 +1,17 @@
+%h1 Listing Charges
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Sale ID
+      %th Stripe Charge ID
+      %th Amount
+
+  %tbody
+    - @charges.each do |charge|
+      %tr
+        %td= charge.id
+        %td= link_to charge.sale_id, sale_path(charge.sale_id)
+        %td= charge.charge_id
+        %td= number_to_currency(charge.amount / 100)

@@ -54,7 +54,7 @@
 
   %tbody
     %tr
-      %td= @rental_location.id
+      %td= link_to @rental_location.id, rental_location_path(@rental_location.id)
       %td= @rental_location.first_name
       %td= @rental_location.last_name
       %td= @rental_location.phone

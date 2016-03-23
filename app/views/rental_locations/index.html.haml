@@ -1,8 +1,10 @@
-%h1 Listing rental_locations
+%h1 Listing Rental Locations
 
-%table
+%table.table
   %thead
     %tr
+      %th ID
+      %th Sale ID
       %th First name
       %th Last name
       %th Phone
@@ -18,6 +20,8 @@
   %tbody
     - @rental_locations.each do |rental_location|
       %tr
+        %td= rental_location.id
+        %td= link_to rental_location.sale_id, sale_path(rental_location.sale_id)
         %td= rental_location.first_name
         %td= rental_location.last_name
         %td= rental_location.phone

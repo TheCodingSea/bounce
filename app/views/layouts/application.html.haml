@@ -18,13 +18,15 @@
         %li
           %a{href: public_products_path} Inflatables
       %ul.nav.navbar-nav.navbar-right
-        %li.dropdown
-          -if user_signed_in?
-            %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown", "role" => "button", "aria-haspopup" => true, "aria-expanded" => false}
-              #{current_user.email} <span class="caret"></span>
-            %ul.dropdown-menu
-              %li
-                %a{href: products_path} Products
+        -if user_signed_in?
+          %li
+            %a{href: admin_dashboard_index_path} #{current_user.email}
+          /%li.dropdown
+          /  %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown", "role" => "button"}
+          /    #{current_user.email} <span class="caret"></span>
+          /  %ul.dropdown-menu
+          /    %li
+          /      %a{href: products_path} Products
         %li
           %a.btn.btn-default{href: cart_path}
             %span.glyphicon.glyphicon-shopping-cart
