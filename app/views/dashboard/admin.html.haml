@@ -1,11 +1,19 @@
-%ul
-  %li
-    %a{href: products_path} Products
-  %li
-    %a{href: sales_path} Sales
-  %li
-    %a{href: charges_path} Charges
-  %li
-    %a{href: customers_path} Customers
-  %li
-    %a{href: rental_locations_path} Rental Locations
+=stylesheet_link_tag "simple_calendar"
+
+.row
+  .col-xs-12
+    %a.btn.btn-default{href: products_path} Products
+    %a.btn.btn-default{href: sales_path} Sales
+    %a.btn.btn-default{href: charges_path} Charges
+    %a.btn.btn-default{href: customers_path} Customers
+    %a.btn.btn-default{href: rental_locations_path} Rental Locations
+
+%hr
+
+.row
+  .col-xs-12
+    = month_calendar(events: @rentals, attribute: :start_date) do |date, rentals|
+      = date.day
+      %br
+      -rentals.each do |rental|
+        Not Available

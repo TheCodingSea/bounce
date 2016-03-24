@@ -4,5 +4,6 @@ class DashboardController < ApplicationController
   end
 
   def admin
+    @rentals = Rental.all
   end
 end
