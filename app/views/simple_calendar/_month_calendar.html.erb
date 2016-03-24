@@ -1,8 +1,20 @@
 <div class="simple-calendar">
-  <%= link_to "Previous", start_date: date_range.first - 1.day  %>
+  <div class="controls">
+    <div class="row">
+      <div class="col-sm-4">
+        <%= link_to "Previous", { start_date: date_range.first - 1.day }, class: "btn btn-default"  %>
+      </div>
 
-  <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
-  <%= link_to "Next", start_date: date_range.last + 1.day  %>
+      <div class="col-sm-4">
+        <div class="current_month">
+          <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <%= link_to "Next", { start_date: date_range.last + 1.day }, class: "btn btn-default"  %>
+      </div>
+  </div>
 
   <table class="table table-striped">
     <thead>
