@@ -5,7 +5,37 @@
     %h1 Welcome to Empire Events!
     %p Check out all our cool stuff.
 
--@products.each do |product|
-  .row
-    .col-md-12
-      =render partial: "products/product_panel", locals: { product: product }
+.panel.panel-default.product-panel
+  .panel-body
+    .row
+      .col-sm-12
+        %h1 Inflatables
+    .row
+      .col-sm-3.col-sm-offset-9
+        %a.btn.btn-primary.btn-lg.btn-block{href: products_path} View
+
+.panel.panel-default.product-panel#about_us
+  .panel-body
+    .row
+      .col-sm-12
+        %h1 About Us
+    .row
+      .col-sm-12
+        %p
+          Bacon ipsum dolor amet swine sint cow drumstick aliqua fatback frankfurter boudin short loin,
+          t-bone ut nostrud id cupidatat beef. Ea bacon drumstick bresaola filet mignon shoulder ipsum anim
+          brisket capicola tongue esse chicken. Turkey fugiat tempor sausage, shank non sint beef qui do
+          brisket pig shoulder jerky. Pork chop capicola pastrami cow deserunt.
+
+.panel.panel-default.product-panel#contact_us
+  .panel-body
+    .row
+      .col-sm-12
+        %h1 Contact Us
+    .row
+      .col-sm-12
+        %p
+          Bacon ipsum dolor amet swine sint cow drumstick aliqua fatback frankfurter boudin short loin,
+          t-bone ut nostrud id cupidatat beef. Ea bacon drumstick bresaola filet mignon shoulder ipsum anim
+          brisket capicola tongue esse chicken. Turkey fugiat tempor sausage, shank non sint beef qui do
+          brisket pig shoulder jerky. Pork chop capicola pastrami cow deserunt.
