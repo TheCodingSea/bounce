@@ -1,12 +1,12 @@
 =stylesheet_link_tag "simple_calendar"
 
 .row
-  .col-xs-12
-    %a.btn.btn-default{href: products_path} Products
-    %a.btn.btn-default{href: sales_path} Sales
-    %a.btn.btn-default{href: charges_path} Charges
-    %a.btn.btn-default{href: customers_path} Customers
-    %a.btn.btn-default{href: rental_locations_path} Rental Locations
+  .col-xs-12.text-center
+    %a.btn.btn-primary{href: products_path} Products
+    %a.btn.btn-primary{href: sales_path} Sales
+    %a.btn.btn-primary{href: charges_path} Charges
+    %a.btn.btn-primary{href: customers_path} Customers
+    %a.btn.btn-primary{href: rental_locations_path} Rental Locations
 
 %hr
 
@@ -16,4 +16,7 @@
       = date.day
       %br
       -rentals.each do |rental|
-        Not Available
+        -if rental.line_item.sale_id
+          =link_to rental.product_name, sale_path(rental.line_item.sale_id)
+        -else
+          =rental.product_name

@@ -4,6 +4,6 @@ class DashboardController < ApplicationController
   end
 
   def admin
-    @rentals = Rental.all
+    @rentals = Rental.all.includes(:product, :line_item)
   end
 end
