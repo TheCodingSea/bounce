@@ -25,6 +25,13 @@
               %h1 #{@product.name} <small>#{number_to_currency @product.price}</small>
             %p.lead
               = @product.description
+          .col-sm-6
+            .product-image.pull-right
+              = image_tag @product.photo.url, class: "img-responsive"
+
+        %hr
+        .row
+          .col-sm-10.col-sm-offset-1
             = month_calendar(events: @rentals, attribute: :start_date) do |date, rentals|
               = date.day
               %br
@@ -37,6 +44,3 @@
               %br
               %br
               =submit_tag "Reserve", class: "btn btn-success"
-          .col-sm-6
-            .product-image.pull-right
-              = image_tag @product.photo.url, class: "img-response"
