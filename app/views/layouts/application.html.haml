@@ -28,7 +28,7 @@
           -else
             %a{href: root_path} Contact Us
         %li
-          %a.btn.btn-default{href: cart_path}
+          %a.btn.cart{href: cart_path, class: current_sale.line_items.count > 0 ? "btn-success" : "btn-default"}
             %span.glyphicon.glyphicon-shopping-cart
             %span.badge=current_sale.line_items.count
       %ul.nav.navbar-nav.navbar-left
