@@ -8,7 +8,7 @@
         .page-header
           %h1 #{product.name} <small>#{number_to_currency product.price}</small>
         %p.lead
-          =product.description
+          =product.size
     .row
       .col-sm-3.col-sm-offset-9
         %a.btn.btn-primary.btn-lg.btn-block{href: product_path(product)} More Info

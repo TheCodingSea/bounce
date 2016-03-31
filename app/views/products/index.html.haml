@@ -4,6 +4,7 @@
   %thead
     %tr
       %th Name
+      %th Size
       %th Description
       %th Price
       %th
@@ -14,6 +15,7 @@
     - @products.each do |product|
       %tr
         %td= product.name
+        %td= product.size
         %td= product.description
         %td= number_to_currency product.price
         %td= link_to 'Show', product
