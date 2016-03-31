@@ -24,7 +24,12 @@ Rails.application.routes.draw do
   end
 
   resources :rental_locations
-  resources :sales
+
+  resources :sales do
+    member do
+      get "send_receipt"
+    end
+  end
 
   get "cart" => "checkout#cart", as: "cart"
   get "review_and_pay" => "checkout#review_and_pay", as: "review_and_pay"

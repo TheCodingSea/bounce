@@ -1,5 +1,13 @@
 %h1 Listing sales
 
+-if notice
+  .row
+    .col-sm-4
+      %div#notice.alert.alert-info.alert-dismissable{role: 'alert'}
+        %button{:type => 'button', :class => 'close', 'data-dismiss' => 'alert', 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'} &times;
+        = notice
+
 %table.table
   %thead
     %tr
@@ -11,6 +19,7 @@
       %th
       %th
       %th
+      %th
 
   %tbody
     - @sales.each do |sale|
@@ -19,7 +28,8 @@
         %td= number_to_currency sale.subtotal
         %td= number_to_currency sale.tax
         %td= number_to_currency sale.total
-        %td=sale.completed_at
+        %td= sale.completed_at
+        %td= link_to 'Send Receipt', send_receipt_sale_path(sale)
         %td= link_to 'Show', sale
         %td= link_to 'Edit', edit_sale_path(sale)
         %td= link_to 'Destroy', sale, :method => :delete, :data => { :confirm => 'Are you sure?' }

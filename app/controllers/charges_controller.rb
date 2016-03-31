@@ -7,14 +7,8 @@ class ChargesController < ApplicationController
   end
 
   def create
-    puts 'XXXXXXXXXXXXXXXXXXXXXXX'
-    pp params
-    puts 'XXXXXXXXXXXXXXXXXXXXXXX'
     #Amount must be in cents
     @amount = (current_sale.total * 100).to_i
-    puts 'XXXXXXXXXXXXXXXXXXXXXXX'
-    pp @amount
-    puts 'XXXXXXXXXXXXXXXXXXXXXXX'
 
     find_customer
 
@@ -24,15 +18,14 @@ class ChargesController < ApplicationController
       description: "Rails Stripe Customer",
       currency: "usd"
     )
-    puts 'XXXXXXXXXXXXXXXXXXXXXXX'
-    pp charge
-    puts 'XXXXXXXXXXXXXXXXXXXXXXX'
 
     @charge   = Charge.create(sale_id: session["sale_id"], charge_id: charge["id"],
                               amount: @amount, customer_id: @customer.id)
     @sale     = current_sale
     @sale.update(customer_id: @customer.id, completed_at: Time.now)
-    #FIXME send email
+
+    ReceiptMailer.receipt_email(@sale).deliver_now
+
     clear_current_sale
     redirect_to thank_you_path(sale_id: @sale.id)
 

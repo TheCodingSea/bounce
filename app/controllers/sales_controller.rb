@@ -1,6 +1,6 @@
 class SalesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_sale, only: [:show, :edit, :update, :destroy]
+  before_action :set_sale, only: [:show, :edit, :update, :destroy, :send_receipt]
 
   def index
     @sales = Sale.all
@@ -55,6 +55,12 @@ class SalesController < ApplicationController
       format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def send_receipt
+    ReceiptMailer.receipt_email(@sale).deliver_now
+    flash[:notice] = "Email Sent"
+    redirect_to :back
   end
 
   private
