@@ -1,7 +1,12 @@
-%h1 Editing sale
+.row
+  .col-md-6
+    = link_to 'Back', sales_path, class: "btn btn-default"
+    = link_to 'Show', @sale, class: "btn btn-info"
 
-= render 'form'
+.row
+  .col-md-6
+    %h1 Editing sale
 
-= link_to 'Show', @sale
-\|
-= link_to 'Back', sales_path
+.row
+  .col-md-6
+    = render 'form'
