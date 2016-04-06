@@ -1,6 +1,6 @@
 = form_for @rental_location, class: "form-horizontal" do |f|
   - if @rental_location.errors.any?
-    #error_explanation
+    #error_explanation.alert.alert-danger
       %h2= "#{pluralize(@rental_location.errors.count, "error")} prohibited this rental_location from being saved:"
       %ul
         - @rental_location.errors.full_messages.each do |msg|
@@ -37,27 +37,27 @@
       .col-md-6
         .form-group
           .col-sm-3
-            = f.label :phone, class: "control-label"
-          .col-sm-9
-            = f.text_field :phone, class: "form-control"
-      .col-md-6
-        .form-group
-          .col-sm-3
             = f.label :city, class: "control-label"
           .col-sm-9
             = f.text_field :city, class: "form-control"
-    .row
       .col-md-6
         .form-group
           .col-sm-3
             = f.label :state, class: "control-label"
           .col-sm-9
             = f.text_field :state, class: "form-control"
+    .row
       .col-md-6
         .form-group
           .col-sm-3
             = f.label :zip, class: "control-label"
           .col-sm-9
             = f.text_field :zip, class: "form-control"
+      .col-md-6
+        .form-group
+          .col-sm-3
+            = f.label :phone, class: "control-label"
+          .col-sm-9
+            = f.text_field :phone, class: "form-control"
         .actions
           = f.submit 'Save', class: "btn btn-primary"
