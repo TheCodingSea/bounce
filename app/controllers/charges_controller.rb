@@ -22,7 +22,7 @@ class ChargesController < ApplicationController
     @charge   = Charge.create(sale_id: session["sale_id"], charge_id: charge["id"],
                               amount: @amount, customer_id: @customer.id)
     @sale     = current_sale
-    @sale.update(customer_id: @customer.id, completed_at: Time.now)
+    @sale.update(customer_id: @customer.id, completed_at: Time.now, closed: true)
 
     ReceiptMailer.receipt_email(@sale).deliver_now
 

@@ -16,7 +16,9 @@
       = date.day
       %br
       -rentals.each do |rental|
-        -if rental.line_item.sale_id
+        -if rental.line_item.sale && rental.line_item.sale.closed?
           =link_to rental.product_name, sale_path(rental.line_item.sale_id)
         -else
           =rental.product_name
+
+=link_to "Sign Out", destroy_user_session_path, method: :delete
