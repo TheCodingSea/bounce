@@ -18,15 +18,9 @@
         %li
           %a{href: public_products_path} Inflatables
         %li
-          -if request.fullpath == root_path
-            %a{href: "#about_us"} About Us
-          -else
-            %a{href: root_path} About Us
+          %a{href: "/#about_us"} About Us
         %li
-          -if request.fullpath == root_path
-            %a{href: "#contact_us"} Contact Us
-          -else
-            %a{href: root_path} Contact Us
+          %a{href: "/#contact_us"} Contact Us
         %li
           %a.btn.cart{href: cart_path, class: current_sale.line_items.count > 0 ? "btn-success" : "btn-default"}
             %span.glyphicon.glyphicon-shopping-cart
