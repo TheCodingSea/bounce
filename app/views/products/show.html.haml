@@ -1,4 +1,5 @@
 =stylesheet_link_tag "simple_calendar"
+=javascript_include_tag "calendar"
 %p#notice= notice
 
 .row
@@ -35,10 +36,13 @@
         .row
           .col-sm-10.col-sm-offset-1
             = month_calendar(events: @rentals, attribute: :start_date) do |date, rentals|
-              = date.day
-              %br
-              -rentals.each do |rental|
-                Not Available
+              -if rentals.empty?
+                %button.btn.btn-default.btn-block{onclick: "window.Calendar.setRentalDate({day: #{date.day}, month: #{date.month}, year: #{date.year}})"}= date.day
+              -else
+                = date.day
+                %br
+                -rentals.each do |rental|
+                  Not Available
 
             =form_for LineItem.new do |f|
               =f.hidden_field :product_id, value: @product.id

@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require sweetalert.min
+//= require calendar
 //= require turbolinks
 //= require_tree .
