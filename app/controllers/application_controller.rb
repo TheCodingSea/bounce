@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
     if session[:sale_id].nil?
       Sale.new
     else
-      Sale.find(session[:sale_id])
+      begin
+        Sale.find(session[:sale_id])
+      rescue
+        Sale.new
+      end
     end
   end
 

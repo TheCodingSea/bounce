@@ -24,6 +24,7 @@ class ChargesController < ApplicationController
     @sale     = current_sale
     @sale.update(customer_id: @customer.id, completed_at: Time.now, closed: true)
 
+    #FIXME send to Resque
     ReceiptMailer.receipt_email(@sale).deliver_now
 
     clear_current_sale
