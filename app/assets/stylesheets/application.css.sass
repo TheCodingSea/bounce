@@ -2,18 +2,52 @@
 @import "bootstrap"
 @import "sweetalert"
 
+$blue:  #03A9F4
+$blue-hover: #0288D1
+
 body
   background: #FAFAFA
 
-.navbar.navbar-default
-  background: white
+.navbar.navbar-inverse
+  background-color: $blue
+  border-color: $blue
+
+  .navbar-brand
+    color: white
+
+  ul
+    a
+      color: white
+
+    a:hover
+      background-color: $blue-hover
+
+a.cart.btn-default
+  background-color: $blue
+  border: none
+  border-radius: 0
+
+  span
+    color: white
+
+a.cart.btn-default:hover
 
 a.cart.btn-success
+  border-radius: 0
+
   span.glyphicon
     color: white
 
 a.cart.btn-success:hover
   background: green !important
+
+.btn.btn-primary
+  background-color: $blue
+  border-color: $blue
+
+.btn.btn-primary:hover
+  background-color: $blue-hover
+  border-color: $blue-hover
 
 .page-header
   border-bottom: none
