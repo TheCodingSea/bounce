@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   end
 
   def public
-    @products = Product.all
+    @products = Product.publicized
   end
 
   def show
@@ -62,6 +62,6 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :description, :price, :photo)
+      params.require(:product).permit(:name, :description, :price, :photo, :publicized, :size)
     end
 end

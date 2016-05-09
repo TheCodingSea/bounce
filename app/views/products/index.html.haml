@@ -4,9 +4,11 @@
   %thead
     %tr
       %th Name
+      %th Photo
       %th Size
       %th Description
       %th Price
+      %th Public
       %th
       %th
       %th
@@ -14,14 +16,17 @@
   %tbody
     - @products.each do |product|
       %tr
-        %td= product.name
+        %td
+          %strong= product.name
+        %td= image_tag product.photo.url, class: "img-responsive"
         %td= product.size
         %td= product.description
         %td= number_to_currency product.price
+        %td= product.publicized
         %td= link_to 'Show', product
         %td= link_to 'Edit', edit_product_path(product)
         %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Product', new_product_path
+= link_to 'New Product', new_product_path, class: "btn btn-primary"
