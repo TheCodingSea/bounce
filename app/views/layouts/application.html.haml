@@ -35,11 +35,15 @@
           %li
             %a{href: admin_dashboard_index_path} #{current_user.email}
 
-.row
+.row#content-row
   .col-md-10.col-md-offset-1
     = yield
 
-/.footer
-/  Terms & Conditions
-/  |
-/  Privacy Policy
+%br
+
+%nav.navbar.navbar-default.navbar-fixed-bottom.footer
+  .container-fluid
+    .text-center
+      Terms & Conditions
+      |
+      Privacy Policy
