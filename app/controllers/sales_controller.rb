@@ -58,8 +58,9 @@ class SalesController < ApplicationController
   end
 
   def send_receipt
-    ReceiptMailer.receipt_email(@sale).deliver_now
-    flash[:notice] = "Email Sent"
+    Resque.enqueue(ReceiptMailerWorker, @sale.id)
+    #ReceiptMailer.receipt_email(@sale).deliver_now
+    flash[:notice] = "Sending Email..."
     redirect_to :back
   end
 
