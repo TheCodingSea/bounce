@@ -5,13 +5,16 @@
 @import 'font-awesome'
 
 $blue:  #03A9F4
-$blue-hover: #0288D1
+$dark-blue: #0288D1
 
 body
   background: #FAFAFA
 
 #content-row
   padding-bottom: 50px
+
+p
+  text-indent: 3em
 
 .navbar.navbar-inverse
   background-color: $blue
@@ -25,7 +28,7 @@ body
       color: white
 
     a:hover
-      background-color: $blue-hover
+      background-color: $dark-blue
 
 a.cart.btn-default
   background-color: $blue
@@ -51,8 +54,8 @@ a.cart.btn-success:hover
   border-color: $blue
 
 .btn.btn-primary:hover
-  background-color: $blue-hover
-  border-color: $blue-hover
+  background-color: $dark-blue
+  border-color: $dark-blue
 
 .page-header
   border-bottom: none
@@ -69,5 +72,8 @@ a.cart.btn-success:hover
 .social-icons
   font-size: 2em
   padding: 0.5em
+
+.jumbotron
+  background: transparent
 
 .footer
