@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'aws-s3'
 gem 'bootstrap-sass'
 gem 'bugsnag'
 gem 'devise'
@@ -42,6 +43,7 @@ gem 'haml-rails'
 #gem 'mailgun-rails'
 gem 'paperclip', '~>4.3'
 gem 'puma'
+gem 'redis'
 gem 'resque'
 gem 'simple_calendar', '~> 2.0'
 gem 'stripe'

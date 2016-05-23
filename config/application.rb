@@ -23,6 +23,14 @@ module Bounce
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.assets.initialize_on_precompile = false
+    config.paperclip_defaults = {
+      storage: :s3,
+      bucket: ENV["S3_BUCKET"],
+      s3_protocol: :https,
+      s3_credentials: {
+        access_key_id: ENV["DEFAULT_S3_KEY"],
+        secret_access_key: ENV["DEFAULT_S3_SECRET"]
+      }
+    }
   end
 end
