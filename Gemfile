@@ -33,7 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'aws-s3'
-gem 'aws-sdk', '~> 2'
+gem 'aws-sdk', '<2.0'
 gem 'bootstrap-sass'
 gem 'bugsnag'
 gem 'devise'
