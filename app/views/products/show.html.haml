@@ -42,8 +42,8 @@
         .row
           .col-sm-10.col-sm-offset-1
             = month_calendar(events: @rentals, attribute: :start_date) do |date, rentals|
-              -if rentals.empty?
-                %button.btn.btn-default.btn-block{onclick: "window.Calendar.setRentalDate({day: #{date.day}, month: #{date.month}, year: #{date.year}})"}= date.day
+              -if rentals.empty? && date > Date.today
+                %button.btn.btn-default.btn-block{onclick: "window.Calendar.setRentalDate({day: #{date.day}, month: #{date.month}, year: #{date.year}})", class: "#{date.day}-#{date.month}"}= date.day
               -else
                 = date.day
                 %br
@@ -52,7 +52,8 @@
 
             =form_for LineItem.new do |f|
               =f.hidden_field :product_id, value: @product.id
-              =date_select("rental", "start_date", start_year: Date.today.year, order: [:day, :month, :year])
+              .hidden
+                =date_select("rental", "start_date", start_year: Date.today.year, order: [:day, :month, :year])
               %br
               %br
               =submit_tag "Reserve", class: "btn btn-success"
