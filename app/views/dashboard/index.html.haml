@@ -1,66 +1,132 @@
 =stylesheet_link_tag "dashboard"
 
-.jumbotron
-  .container.text-center
-    =image_tag("crown.png", class: "crown")
-    %h1 Welcome to Empire Events!
-    %p Delivering life long memories
+#carousel.carousel.slide{'data-ride': 'carousel'}
+  %ol.carousel-indicators
+    %li.active{'data-target': '#carousel0', 'data-slide-to': '0'}
+    %li.active{'data-target': '#carousel1', 'data-slide-to': '1'}
+    %li.active{'data-target': '#carousel2', 'data-slide-to': '2'}
+    %li.active{'data-target': '#carousel3', 'data-slide-to': '3'}
+    %li.active{'data-target': '#carousel4', 'data-slide-to': '4'}
+    %li.active{'data-target': '#carousel5', 'data-slide-to': '5'}
 
-.panel.panel-default.product-panel#inflatables
-  .panel-body
+  .carousel-inner{role: "listbox"}
+    .item.active
+      =link_to image_tag("Castle_Marked.jpg"), public_products_path
+      .carousel-caption
+        %h3 Look at this castle!
+    .item
+      =link_to image_tag("DLS_Angle_Marked.jpg"), public_products_path
+      .carousel-caption
+        %h3 Look at this slide!
+    .item
+      =link_to image_tag("Larel_Slide.jpg"), public_products_path
+      .carousel-caption
+        %h3 Look at those people!
+    .item
+      =link_to image_tag("Obst_Marked.jpg"), public_products_path
+      .carousel-caption
+        %h3 Look at this thing!
+    .item
+      =link_to image_tag("School_Marked.jpg"), public_products_path
+      .carousel-caption
+        %h3 Look at that karate!
+    .item
+      =link_to image_tag("Slide_Marked.jpg"), public_products_path
+      .carousel-caption
+        %h3 Look at those kids!
+
+  %a.left.carousel-control{href: "#carousel", role: "button", "data-slide": "prev"}
+    %span.glyphicon.glyphicon-chevron-left{'aria-hidden': 'true'}
+    %span.sr-only Previous
+  %a.right.carousel-control{href: "#carousel", role: "button", "data-slide": "next"}
+    %span.glyphicon.glyphicon-chevron-right{'aria-hidden': 'true'}
+    %span.sr-only Next
+
+/.row
+/  .col-sm-10.col-sm-offset-1
+/    .jumbotron
+/      .container.text-center
+/        =image_tag("empire_logo.png", class: "img-responsive")
+/        %p Delivering life long memories
+
+.row.white
+  .container
+    .row
+      .col-sm-12.section-heading
+        %h2.text-uppercase Parties/Events/Fundraisers
+        %h1.text-uppercase Whatever the occasion, we take the fun to the next level!
+    %hr
+    .row
+      .col-sm-4.upcase
+        %h3.text-uppercase Our Goal
+      .col-sm-4
+        %h3.text-uppercase Professional
+      .col-sm-4
+        %h3.text-uppercase Convenient
+
+.row.blue#inflatables
+  .container
     .row
       .col-sm-12
         %h1 Inflatables
-    .row
-      .col-sm-3.col-sm-offset-9
-        %a.btn.btn-primary.btn-lg.btn-block{href: public_products_path} View
+    .panel-body
+      .row
+        -Product.all.each do |product|
+          .col-sm-3
+            =image_tag product.photo.url, class: "img-circle"
 
-.panel.panel-default.product-panel#about_us
-  .panel-body
+      .row
+        .col-sm-3.col-sm-offset-9
+          %a.btn.btn-primary.btn-lg.btn-block{href: public_products_path} View
+
+.row.white#about_us
+  .container
     .row
       .col-sm-12
-        %h1 About Us
+        %h2 About Us
     %br
-    .row
-      .col-sm-12
-        %p
-          Empire Events was created in the summer of 2016 for the main purpose of 
-          delivering more than just equipment. We saw a problem in the party rental industry 
-          and we plan to fix it. Empire strives to handle every customer’s event as if it were 
-          our own family’s party. 
-        %p
-          The problem in the party rental industry today lies in the way in which most 
-          companies operate. Forcing customers to contact the company, via email, phone call, 
-          etc, just to order the products the customers want to rent. Our company invites you 
-          to reserve any of our products directly on our website with no hassle at all! 
-          By treating our customers like family, our goal is to create an ACTUAL family 
-          within our company. Creating a network for our customers to not only make their 
-          events memorable, but to deliver knowledge to our customers to give them the 
-          opportunity to attend public events near them.
-        %p
-          In the future, Empire Events will continue to develop a larger array of 
-          products to further enhance the customer experience at our events. We will also 
-          innovate and advance our technologies to provide more opportunities for the 
-          Empire family to enjoy public events near them. Meanwhile, we will work to 
-          increase the size of our family to give us the ability to keep our prices as low as 
-          possible for our customers!
+    .panel-body
+      .row
+        .col-sm-12
+          %p
+            Empire Events was created in the summer of 2016 for the main purpose of 
+            delivering more than just equipment. We saw a problem in the party rental industry 
+            and we plan to fix it. Empire strives to handle every customer’s event as if it were 
+            our own family’s party. 
+          %p
+            The problem in the party rental industry today lies in the way in which most 
+            companies operate. Forcing customers to contact the company, via email, phone call, 
+            etc, just to order the products the customers want to rent. Our company invites you 
+            to reserve any of our products directly on our website with no hassle at all! 
+            By treating our customers like family, our goal is to create an ACTUAL family 
+            within our company. Creating a network for our customers to not only make their 
+            events memorable, but to deliver knowledge to our customers to give them the 
+            opportunity to attend public events near them.
+          %p
+            In the future, Empire Events will continue to develop a larger array of 
+            products to further enhance the customer experience at our events. We will also 
+            innovate and advance our technologies to provide more opportunities for the 
+            Empire family to enjoy public events near them. Meanwhile, we will work to 
+            increase the size of our family to give us the ability to keep our prices as low as 
+            possible for our customers!
 
-.panel.panel-default.product-panel#contact_us
-  .panel-body
+.row.blue#contact_us
+  .container
     .row
       .col-sm-12
-        %h1 Contact Us
-    .row
-      .col-sm-12
-        %p
-          %address
-            Email: info@EmpireEventsNJ.com
-            %br
-            %abbr{title: "phone"}P:
-            856.258.6630
-        =link_to("https://facebook.com/EmpireFamily1") do
-          =icon('facebook-square', class: "social-icons")
-        =link_to("https://www.instagram.com/EmpireFamily/") do
-          =icon('instagram', class: "social-icons")
-        =link_to("https://twitter.com/EmpireFamily") do
-          =icon('twitter-square', class: "social-icons")
+        %h2 Contact Us
+    .panel-body
+      .row
+        .col-sm-12
+          %p
+            %address
+              Email: info@EmpireEventsNJ.com
+              %br
+              %abbr{title: "phone"}P:
+              856.258.6630
+          =link_to("https://facebook.com/EmpireFamily1") do
+            =icon('facebook-square', class: "social-icons")
+          =link_to("https://www.instagram.com/EmpireFamily/") do
+            =icon('instagram', class: "social-icons")
+          =link_to("https://twitter.com/EmpireFamily") do
+            =icon('twitter-square', class: "social-icons")
