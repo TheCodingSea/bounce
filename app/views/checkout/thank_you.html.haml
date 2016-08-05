@@ -1,55 +1,60 @@
-.panel.panel-default
-  .panel-body
-    %h1.text-center.page-header Thank You!
-    %p.text-center
-      Your order has been processed and you will be receiving an email confirmation shortly.
-    %table.table
-      %tr
-        %th Name
-        %th Price
-        %th Rental Date
-      -@sale.line_items.each do |li|
-        %tr
-          %td=li.product.name
-          %td=number_to_currency li.product.price
-          %td=li.rental.start_date
-    .row
-      .col-sm-4.col-sm-offset-8
-        %table.table
-          %tr
-            %td
-              %strong Subtotal:
-            %td
-              =number_to_currency @sale.subtotal
-          %tr
-            %td
-              %strong Tax:
-            %td
-              =number_to_currency @sale.tax
-          %tr
-            %td
-              %strong Total:
-            %td
-              =number_to_currency @sale.total
-    .row
-      .col-sm-12
-        %h2.text-center Rental Location
-        %table.table
-          %tr
-            %th First Name
-            %th Last Name
-            %th Phone
-            %th Address 1
-            %th Address 2
-            %th City
-            %th State
-            %th Zip
-          %tr
-            %td=@rental_location.first_name
-            %td=@rental_location.last_name
-            %td=@rental_location.phone
-            %td=@rental_location.address_1
-            %td=@rental_location.address_2
-            %td=@rental_location.city
-            %td=@rental_location.state
-            %td=@rental_location.zip
+%h1.text-center Thank you for trusting us with your event!
+%h1.text-center We can't wait to deliver the fun!
+.text-center
+  It's going to be awesome. We're sure of it.
+  %a.btn.btn-default{href: root_path} Return to our Home Page
+/.panel.panel-default
+/  .panel-body
+/    %h1.text-center.page-header Thank You!
+/    %p.text-center
+/      Your order has been processed and you will be receiving an email confirmation shortly.
+/    %table.table
+/      %tr
+/        %th Name
+/        %th Price
+/        %th Rental Date
+/      -@sale.line_items.each do |li|
+/        %tr
+/          %td=li.product.name
+/          %td=number_to_currency li.product.price
+/          %td=li.rental.start_date
+/    .row
+/      .col-sm-4.col-sm-offset-8
+/        %table.table
+/          %tr
+/            %td
+/              %strong Subtotal:
+/            %td
+/              =number_to_currency @sale.subtotal
+/          %tr
+/            %td
+/              %strong Tax:
+/            %td
+/              =number_to_currency @sale.tax
+/          %tr
+/            %td
+/              %strong Total:
+/            %td
+/              =number_to_currency @sale.total
+/    .row
+/      .col-sm-12
+/        %h2.text-center Rental Location
+/        %table.table
+/          %tr
+/            %th First Name
+/            %th Last Name
+/            %th Phone
+/            %th Address 1
+/            %th Address 2
+/            %th City
+/            %th State
+/            %th Zip
+/          %tr
+/            %td=@rental_location.first_name
+/            %td=@rental_location.last_name
+/            %td=@rental_location.phone
+/            %td=@rental_location.address_1
+/            %td=@rental_location.address_2
+/            %td=@rental_location.city
+/            %td=@rental_location.state
+/            %td=@rental_location.zip
