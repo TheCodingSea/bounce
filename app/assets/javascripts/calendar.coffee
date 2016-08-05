@@ -1,5 +1,6 @@
 class Calendar
   setRentalDate: (date) ->
+    @enableSubmit()
     @clearPreviouslySelected()
     @setPreviouslySelected(date)
     @highlightSelectedDate(date)
@@ -15,5 +16,8 @@ class Calendar
 
   highlightSelectedDate: (date) ->
     $(".#{date.day}-#{date.month}").toggleClass("selected-date")
+
+  enableSubmit: ->
+    $("#add-to-cart").prop("disabled", false)
 
 window.Calendar = new Calendar

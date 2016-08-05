@@ -56,4 +56,6 @@
                 =date_select("rental", "start_date", start_year: Date.today.year, order: [:day, :month, :year])
               %br
               %br
-              =submit_tag "Reserve", class: "btn btn-success"
+              .pull-right
+                =link_to "Back to Inflatables", public_products_path, class: "btn btn-default"
+                =submit_tag "Reserve", id: "add-to-cart", class: "btn btn-success", disabled: "disabled"
