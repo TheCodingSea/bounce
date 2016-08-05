@@ -34,6 +34,12 @@
 
         %hr
         .row
+          .col-sm-4.col-sm-offset-4
+            Click on the date of your event! If a date is marked as "Not Available" you 
+            may contact us to check the availability on the reserved day by sending an
+            email to info@EmpireEventsNJ.com
+        %br
+        .row
           .col-sm-10.col-sm-offset-1
             = month_calendar(events: @rentals, attribute: :start_date) do |date, rentals|
               -if rentals.empty?
