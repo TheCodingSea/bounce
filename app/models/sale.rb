@@ -9,16 +9,28 @@ class Sale < ActiveRecord::Base
   end
 
   def calculate_tax
-    if self.subtotal
+    begin
+      self.calculate_subtotal if !self.subtotal
       self.tax = self.subtotal * 0.07
-    else
+    rescue
       0
     end
   end
 
   def calculate_total
     begin
+      self.calculate_subtotal if !self.subtotal
+      self.calculate_tax if !self.tax
       self.total = self.subtotal + self.tax
+    rescue
+      0
+    end
+  end
+
+  def calculate_total_before_delivery
+    begin
+      self.calculate_total if !self.total
+      self.total * 0.1
     rescue
       0
     end

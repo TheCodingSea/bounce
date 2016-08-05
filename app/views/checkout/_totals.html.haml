@@ -1,0 +1,21 @@
+%table.table
+  %tr
+    %td.pull-right
+      %strong Subtotal:
+    %td
+      =number_to_currency @sale.subtotal
+  %tr
+    %td.pull-right
+      %strong Tax:
+    %td
+      =number_to_currency @sale.tax
+  %tr
+    %td.pull-right
+      %strong Total:
+    %td
+      =number_to_currency @sale.total
+  %tr
+    %td.pull-right
+      %strong Total Due Before Delivery:
+    %td
+      =number_to_currency @sale.calculate_total_before_delivery

@@ -32,7 +32,7 @@ class ChargesController < ApplicationController
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to review_and_pay_path
+    redirect_to cart_path
   end
 
   private

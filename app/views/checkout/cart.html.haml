@@ -1,6 +1,8 @@
 .panel.panel-default
   .panel-body
-    %h1.text-center.page-header Checkout
+    %h1.text-center.page-header Cart
+    .text-center A deposit of 10% of your total order is due upon checkout to reserve your date.
+    %br
     -if @sale
       %table.table
         %tr
@@ -12,29 +14,37 @@
           %tr
             %td=li.product.name
             %td=number_to_currency li.product.price
-            %td=li.rental.start_date
+            %td=li.rental.start_date.strftime("%m/%d/%y")
             %td=link_to 'Remove', remove_from_cart_line_item_path(li), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
       .row
         .col-sm-4.col-sm-offset-8
-          %table.table
-            %tr
-              %td.pull-right
-                %strong Subtotal:
-              %td
-                =number_to_currency @sale.calculate_subtotal
-            %tr
-              %td.pull-right
-                %strong Tax:
-              %td
-                =number_to_currency @sale.calculate_tax
-            %tr
-              %td.pull-right
-                %strong Total:
-              %td
-                =number_to_currency @sale.calculate_total
+          =render partial: "totals"
+          FOR DELIVERIES MORE THAN 20 MILES, A $0.50 PER MILE OVER 20 MILES CHARGE WILL BE ADDED.
+      %br
+      /.row
+      /  .col-sm-2.col-sm-offset-10
+      /    %a.btn.btn-primary.btn-block{href: review_and_pay_path} Checkout
+      /.row
+      /  .col-sm-12
+      /    %h2.text-center Rental Location
+      /    =render "rental_locations/form"
       .row
-        .col-sm-12
-          %h2.text-center Rental Location
-          =render "rental_locations/form"
+        .col-sm-2.col-sm-offset-10
+          .pull-right
+            =form_tag charges_path do
+              %article
+                -if flash[:error].present?
+                  #error_explanation
+                    %p=flash[:error]
+            
+              %script{src: "https://checkout.stripe.com/checkout.js",
+                class: "stripe-button",
+                "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+                "data-name" => "Empire Events",
+                "data-description" => "Party Rental Checkout",
+                "data-amount" => "#{(@sale.calculate_total_before_delivery * 100)}",
+                "data-billing-address" => true,
+                "data-shipping-address" => true,
+                "data-locale" => "auto"}
     -else
       %h2.text-center.alert.alert-info Your cart is empty!
