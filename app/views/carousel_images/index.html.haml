@@ -1,0 +1,23 @@
+%h1 Listing Carousel Images
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Photo
+      %th
+      %th
+      %th
+
+  %tbody
+    - @carousel_images.each do |carousel_image|
+      %tr
+        %td= carousel_image.name
+        %td= image_tag carousel_image.photo.url, class: "img-responsive"
+        %td= link_to 'Show', carousel_image
+        %td= link_to 'Edit', edit_carousel_image_path(carousel_image)
+        %td= link_to 'Destroy', carousel_image, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Carousel image', new_carousel_image_path, class: "btn btn-primary"

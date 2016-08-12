@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :carousel_images
+  resources :billing_addresses
   resources :customers
   devise_for :users
 

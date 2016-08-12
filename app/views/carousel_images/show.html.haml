@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @carousel_image.name
+%p
+  %b Photo file name:
+  = @carousel_image.photo_file_name
+%p
+  %b Photo content type:
+  = @carousel_image.photo_content_type
+%p
+  %b Photo file size:
+  = @carousel_image.photo_file_size
+%p
+  %b Photo updated at:
+  = @carousel_image.photo_updated_at
+
+= link_to 'Edit', edit_carousel_image_path(@carousel_image)
+\|
+= link_to 'Back', carousel_images_path

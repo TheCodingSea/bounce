@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509225812) do
+ActiveRecord::Schema.define(version: 20160812212706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "billing_addresses", force: :cascade do |t|
+    t.string   "billing_name"
+    t.string   "address_1"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "sale_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "carousel_images", force: :cascade do |t|
+    t.string   "name"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "charges", force: :cascade do |t|
     t.integer  "sale_id"
@@ -62,10 +83,11 @@ ActiveRecord::Schema.define(version: 20160509225812) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "sale_id"
     t.string   "phone"
+    t.string   "shipping_name"
   end
 
   create_table "rentals", force: :cascade do |t|

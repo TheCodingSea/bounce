@@ -1,0 +1,20 @@
+= form_for @carousel_image do |f|
+  - if @carousel_image.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@carousel_image.errors.count, "error")} prohibited this carousel_image from being saved:"
+      %ul
+        - @carousel_image.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    .col-sm-2
+      = f.label :name, class: "control-label"
+    .col-sm-10
+      = f.text_field :name, class: "form-control"
+  .form-group
+    .col-sm-2
+      = f.label :photo, class: "control-label"
+    .col-sm-10
+      = f.file_field :photo, class: "form-control"
+  .actions
+    = f.submit 'Save', class: "btn btn-success"
