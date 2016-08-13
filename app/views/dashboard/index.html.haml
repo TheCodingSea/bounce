@@ -2,38 +2,41 @@
 
 #carousel.carousel.slide{'data-ride': 'carousel'}
   %ol.carousel-indicators
-    %li.active{'data-target': '#carousel0', 'data-slide-to': '0'}
-    %li.active{'data-target': '#carousel1', 'data-slide-to': '1'}
-    %li.active{'data-target': '#carousel2', 'data-slide-to': '2'}
-    %li.active{'data-target': '#carousel3', 'data-slide-to': '3'}
-    %li.active{'data-target': '#carousel4', 'data-slide-to': '4'}
-    %li.active{'data-target': '#carousel5', 'data-slide-to': '5'}
+    -@carousel.each do |image|
+      %li.active{'data-target': "##{image.name}", 'data-slide-to': "#{@carousel.index(image)}"}
+      /%li.active{'data-target': '#carousel1', 'data-slide-to': '1'}
+      /%li.active{'data-target': '#carousel2', 'data-slide-to': '2'}
+      /%li.active{'data-target': '#carousel3', 'data-slide-to': '3'}
+      /%li.active{'data-target': '#carousel4', 'data-slide-to': '4'}
+      /%li.active{'data-target': '#carousel5', 'data-slide-to': '5'}
 
   .carousel-inner{role: "listbox"}
-    .item.active
-      =link_to image_tag("Castle_Marked.jpg"), public_products_path
-      .carousel-caption
-        %h3 Look at this castle!
-    .item
-      =link_to image_tag("DLS_Angle_Marked.jpg"), public_products_path
-      .carousel-caption
-        %h3 Look at this slide!
-    .item
-      =link_to image_tag("Larel_Slide.jpg"), public_products_path
-      .carousel-caption
-        %h3 Look at those people!
-    .item
-      =link_to image_tag("Obst_Marked.jpg"), public_products_path
-      .carousel-caption
-        %h3 Look at this thing!
-    .item
-      =link_to image_tag("School_Marked.jpg"), public_products_path
-      .carousel-caption
-        %h3 Look at that karate!
-    .item
-      =link_to image_tag("Slide_Marked.jpg"), public_products_path
-      .carousel-caption
-        %h3 Look at those kids!
+    -@carousel.each do |image|
+      .item{class: "#{@carousel.index(image) == 0 ? "active" : ""}"}
+        =link_to image_tag(image.photo.url), public_products_path
+        /FIXME add captions to carousel images
+        /.carousel-caption
+        /  %h3 Look at this castle!
+      /.item
+      /  =link_to image_tag("DLS_Angle_Marked.jpg"), public_products_path
+      /  .carousel-caption
+      /    %h3 Look at this slide!
+      /.item
+      /  =link_to image_tag("Larel_Slide.jpg"), public_products_path
+      /  .carousel-caption
+      /    %h3 Look at those people!
+      /.item
+      /  =link_to image_tag("Obst_Marked.jpg"), public_products_path
+      /  .carousel-caption
+      /    %h3 Look at this thing!
+      /.item
+      /  =link_to image_tag("School_Marked.jpg"), public_products_path
+      /  .carousel-caption
+      /    %h3 Look at that karate!
+      /.item
+      /  =link_to image_tag("Slide_Marked.jpg"), public_products_path
+      /  .carousel-caption
+      /    %h3 Look at those kids!
 
   %a.left.carousel-control{href: "#carousel", role: "button", "data-slide": "prev"}
     %span.glyphicon.glyphicon-chevron-left{'aria-hidden': 'true'}

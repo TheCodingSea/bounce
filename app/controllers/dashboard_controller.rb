@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   def index
     @products = Product.all
+    @carousel = CarouselImage.all
   end
 
   def admin
