@@ -4,6 +4,7 @@
   %thead
     %tr
       %th Name
+      %th Caption
       %th Photo
       %th
       %th
@@ -13,6 +14,7 @@
     - @carousel_images.each do |carousel_image|
       %tr
         %td= carousel_image.name
+        %td= carousel_image.caption
         %td= image_tag carousel_image.photo.url, class: "img-responsive"
         %td= link_to 'Show', carousel_image
         %td= link_to 'Edit', edit_carousel_image_path(carousel_image)
