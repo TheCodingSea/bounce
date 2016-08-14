@@ -15,7 +15,7 @@
       .item{class: "#{@carousel.index(image) == 0 ? "active" : ""}"}
         =link_to image_tag(image.photo.url), public_products_path
         .carousel-caption
-          %h3= image.caption
+          %h3=image.caption
       /.item
       /  =link_to image_tag("DLS_Angle_Marked.jpg"), public_products_path
       /  .carousel-caption
