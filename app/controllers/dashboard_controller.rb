@@ -7,4 +7,10 @@ class DashboardController < ApplicationController
   def admin
     @rentals = Rental.all.includes(:product, :line_item)
   end
+
+  def terms_and_conditions
+  end
+
+  def privacy_policy
+  end
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :charges
+
   resources :dashboard do
     collection do
       get "admin"
@@ -33,6 +34,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "terms_and_conditions" => "dashboard#terms_and_conditions", as: "terms_and_conditions"
+  get "privacy_policy" => "dashboard#privacy_policy", as: "privacy_policy"
   get "cart" => "checkout#cart", as: "cart"
   get "review_and_pay" => "checkout#review_and_pay", as: "review_and_pay"
   get "thank_you" => "checkout#thank_you", as: "thank_you"
