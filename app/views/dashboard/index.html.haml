@@ -1,57 +1,8 @@
 =stylesheet_link_tag "dashboard"
 
-#carousel.carousel.slide{'data-ride': 'carousel'}
-  %ol.carousel-indicators
-    -@carousel.each do |image|
-      %li.active{'data-target': "##{image.name}", 'data-slide-to': "#{@carousel.index(image)}"}
-      /%li.active{'data-target': '#carousel1', 'data-slide-to': '1'}
-      /%li.active{'data-target': '#carousel2', 'data-slide-to': '2'}
-      /%li.active{'data-target': '#carousel3', 'data-slide-to': '3'}
-      /%li.active{'data-target': '#carousel4', 'data-slide-to': '4'}
-      /%li.active{'data-target': '#carousel5', 'data-slide-to': '5'}
+=render partial: "carousel"
 
-  .carousel-inner{role: "listbox"}
-    -@carousel.each do |image|
-      .item{class: "#{@carousel.index(image) == 0 ? "active" : ""}"}
-        =link_to image_tag(image.photo.url), public_products_path
-        .carousel-caption
-          %h3=image.caption
-      /.item
-      /  =link_to image_tag("DLS_Angle_Marked.jpg"), public_products_path
-      /  .carousel-caption
-      /    %h3 Look at this slide!
-      /.item
-      /  =link_to image_tag("Larel_Slide.jpg"), public_products_path
-      /  .carousel-caption
-      /    %h3 Look at those people!
-      /.item
-      /  =link_to image_tag("Obst_Marked.jpg"), public_products_path
-      /  .carousel-caption
-      /    %h3 Look at this thing!
-      /.item
-      /  =link_to image_tag("School_Marked.jpg"), public_products_path
-      /  .carousel-caption
-      /    %h3 Look at that karate!
-      /.item
-      /  =link_to image_tag("Slide_Marked.jpg"), public_products_path
-      /  .carousel-caption
-      /    %h3 Look at those kids!
-
-  %a.left.carousel-control{href: "#carousel", role: "button", "data-slide": "prev"}
-    %span.glyphicon.glyphicon-chevron-left{'aria-hidden': 'true'}
-    %span.sr-only Previous
-  %a.right.carousel-control{href: "#carousel", role: "button", "data-slide": "next"}
-    %span.glyphicon.glyphicon-chevron-right{'aria-hidden': 'true'}
-    %span.sr-only Next
-
-/.row
-/  .col-sm-10.col-sm-offset-1
-/    .jumbotron
-/      .container.text-center
-/        =image_tag("empire_logo.png", class: "img-responsive")
-/        %p Delivering life long memories
-
-.row.white
+.row.white.dash_section
   .container
     .row
       .col-sm-12.section-heading
@@ -61,12 +12,27 @@
     .row
       .col-sm-4.upcase
         %h3.text-uppercase Our Goal
+        .description
+          WE WANT TO MAKE YOUR PARTY AWESOME! No seriously, we will make every effort 
+          and do everything in our power to take your party to the next level. Treating
+          every single event as if you were family!
       .col-sm-4
         %h3.text-uppercase Professional
+        .description
+          Our online reservation system was designed with only you in mind. We hope to 
+          make reserving any of our clean and new equipment for your event the easiest job 
+          on your party-planning checklist. With many more tricks up our sleeves, we will 
+          continue to innovate the industry and make renting from us the favorite part of 
+          your party!
       .col-sm-4
         %h3.text-uppercase Convenient
+        .description
+          Using the newest equipment, with the highest level of care, we strive for the 
+          “AHH” reaction every time we deliver our equipment! Our employees are careful with 
+          our equipment as they are with your property and will always be dressed and speak 
+          professionally upon arrival to your event. 
 
-.row.blue#inflatables
+.row.blue.dash_section#inflatables
   .container
     .row
       .col-sm-12
@@ -75,13 +41,13 @@
       .row
         -Product.all.each do |product|
           .col-sm-3
-            =image_tag product.photo.url, class: "img-circle"
+            =image_tag product.photo.url, class: "img-circle img-responsive"
 
       .row
         .col-sm-3.col-sm-offset-9
           %a.btn.btn-primary.btn-lg.btn-block{href: public_products_path} View
 
-.row.white#about_us
+.row.white.dash_section#about_us
   .container
     .row
       .col-sm-12
@@ -112,7 +78,7 @@
             increase the size of our family to give us the ability to keep our prices as low as 
             possible for our customers!
 
-.row.blue#contact_us
+.row.blue.dash_section#contact_us
   .container
     .row
       .col-sm-12

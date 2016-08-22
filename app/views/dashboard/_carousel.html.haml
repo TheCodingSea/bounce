@@ -1,0 +1,19 @@
+#carousel.carousel.slide{'data-ride': 'carousel'}
+  %ol.carousel-indicators
+    -@carousel.each do |image|
+      %li.active{'data-target': "##{image.name}", 'data-slide-to': "#{@carousel.index(image)}"}
+
+  .carousel-inner{role: "listbox"}
+    -@carousel.each do |image|
+      .item{class: "#{@carousel.index(image) == 0 ? "active" : ""}"}
+        =link_to image_tag(image.photo.url), public_products_path
+        .carousel-caption
+          %h3=image.caption
+
+  %a.left.carousel-control{href: "#carousel", role: "button", "data-slide": "prev"}
+    %span.glyphicon.glyphicon-chevron-left{'aria-hidden': 'true'}
+    %span.sr-only Previous
+  %a.right.carousel-control{href: "#carousel", role: "button", "data-slide": "next"}
+    %span.glyphicon.glyphicon-chevron-right{'aria-hidden': 'true'}
+    %span.sr-only Next
+
