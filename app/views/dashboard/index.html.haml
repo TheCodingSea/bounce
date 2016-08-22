@@ -39,7 +39,7 @@
         %h1 Inflatables
     .panel-body
       .row
-        -Product.all.each do |product|
+        -@products[0..3].each do |product|
           .col-sm-3
             =image_tag product.photo.url, class: "img-circle img-responsive"
 
