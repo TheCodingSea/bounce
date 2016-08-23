@@ -32,20 +32,8 @@
           our equipment as they are with your property and will always be dressed and speak 
           professionally upon arrival to your event. 
 
-.row.blue.dash_section#inflatables
-  .container
-    .row
-      .col-sm-12
-        %h1 Inflatables
-    .panel-body
-      .row
-        -@products[0..3].each do |product|
-          .col-sm-3
-            =image_tag product.photo.url, class: "img-circle img-responsive"
-
-      .row
-        .col-sm-3.col-sm-offset-9
-          %a.btn.btn-primary.btn-lg.btn-block{href: public_products_path} View
+.row.parallax.dash_section.text-center#inflatables
+  %a.btn.btn-primary.btn-lg#inflatables_btn{href: public_products_path} Inflatables
 
 .row.white.dash_section#about_us
   .container
