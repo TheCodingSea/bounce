@@ -29,7 +29,8 @@ module Bounce
       s3_protocol: :https,
       s3_credentials: {
         access_key_id: ENV["DEFAULT_S3_KEY"],
-        secret_access_key: ENV["DEFAULT_S3_SECRET"]
+        secret_access_key: ENV["DEFAULT_S3_SECRET"],
+        s3_region: ENV['AWS_REGION']
       }
     }
   end
