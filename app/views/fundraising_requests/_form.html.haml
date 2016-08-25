@@ -1,0 +1,25 @@
+= form_for @fundraising_request do |f|
+  - if @fundraising_request.errors.any?
+    #error_explanation
+      %h2.text-danger= "#{pluralize(@fundraising_request.errors.count, "error")} prohibited this fundraising_request from being saved:"
+      %ul
+        - @fundraising_request.errors.full_messages.each do |msg|
+          %li.text-danger= msg
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control", required: true
+  .form-group
+    = f.label :organization_name, "Organization"
+    = f.text_field :organization_name, class: "form-control"
+  .form-group
+    = f.label :email
+    = f.text_field :email, class: "form-control", required: true
+  .form-group
+    = f.label :event_date, "Date"
+    = f.date_field :event_date, class: "form-control"
+  .form-group
+    = f.label :comments
+    = f.text_area :comments, class: "form-control", rows: 5, placeholder: "Tell us how you think we can make your event AWESOME!"
+  .form-group
+    = f.submit 'Submit', class: "btn btn-success"

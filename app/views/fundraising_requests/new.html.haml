@@ -1,0 +1,47 @@
+.page-header
+  %h1.text-center.text-uppercase Fundraising
+
+.row
+  .col-md-6
+    .panel-body
+      %p
+        Here at Empire, we are ALWAYS LOOKING for different ways we can make a 
+        difference. By offering to set up our inflatables at events that are 
+        raising money or awareness for a good cause, we know we will increase the 
+        funds or awareness that you or your organization are raising for the cause 
+        you support! 
+      %br
+      %p
+        We would LOVE to be everywhere and help every single event, but unfortunately 
+        we don’t have superheroes working for us, YET! We are more than happy to 
+        accept your request to have us attend your event with an inflatable for FREE!  
+      %br
+      %p
+        Please fill out the form below, be sure to leave a comment explaining your 
+        organization and the cause you are supporting at your event! You will receive 
+        an email notifying you of the status of your event. Don’t worry, we won’t 
+        leave you hanging! We will respond to ALL requests with an answer via email 
+        but please allow us up to 48 hours to answer you since our inbox is 
+        constantly EXPLODING with fundraising requests!
+  .col-md-6
+    /#carousel.carousel.slide{'data-ride': 'carousel'}
+    /  %ol.carousel-indicators
+    /    -@products.each do |product|
+    /      %li.active{'data-target': "##{product.name}", 'data-slide-to': "#{@products.index(product)}"}
+    /
+    /  .carousel-inner{role: "listbox"}
+    /    -@products.each do |product|
+    /      .item{class: "#{@products.index(product) == 0 ? "active" : ""}"}
+    /        =link_to image_tag(product.photo.url), public_products_path
+    /        .carousel-caption
+    /          %h3=product.name
+    /
+    /  %a.left.carousel-control{href: "#carousel", role: "button", "data-slide": "prev"}
+    /    %span.glyphicon.glyphicon-chevron-left{'aria-hidden': 'true'}
+    /    %span.sr-only Previous
+    /  %a.right.carousel-control{href: "#carousel", role: "button", "data-slide": "next"}
+    /    %span.glyphicon.glyphicon-chevron-right{'aria-hidden': 'true'}
+    /    %span.sr-only Next
+.row
+  .col-md-6.col-md-offset-3
+    =render "form"

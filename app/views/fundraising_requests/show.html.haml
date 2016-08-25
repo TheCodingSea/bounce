@@ -1,0 +1,36 @@
+%h1.text-center#notice= notice
+
+.row
+  .col-md-6.col-md-offset-3
+    .row
+      .col-sm-2
+        %b Name
+      .col-sm-10
+        = @fundraising_request.name
+    %br
+    .row
+      .col-sm-2
+        %b Organization
+      .col-sm-10
+        = @fundraising_request.organization_name
+    %br
+    .row
+      .col-sm-2
+        %b Email
+      .col-sm-10
+        = @fundraising_request.email
+    %br
+    .row
+      .col-sm-2
+        %b Date
+      .col-sm-10
+        = @fundraising_request.event_date.strftime("%b %d, %Y")
+    %br
+    .row
+      .col-sm-2
+        %b Comments
+      .col-sm-10
+        = @fundraising_request.comments
+    
+    = link_to 'Edit', edit_fundraising_request_path(@fundraising_request), class: "btn btn-info"
+    = link_to 'Back', fundraising_requests_path, class: "btn btn-default"

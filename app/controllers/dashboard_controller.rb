@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+  before_action :authenticate_user!, only: [:admin]
   def index
     @products = Product.all
     @carousel = CarouselImage.all

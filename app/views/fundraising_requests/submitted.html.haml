@@ -1,0 +1,43 @@
+%h1.text-center
+  -if notice
+    #notice= notice
+  -else
+    Thank you! Your request was successfully submitted.
+%h3.text-center We'll be in touch shortly
+
+%br
+%br
+.row
+  .col-md-6.col-md-offset-3
+    .row
+      .col-sm-2
+        %b Name
+      .col-sm-10
+        = @fundraising_request.name
+    %br
+    .row
+      .col-sm-2
+        %b Organization
+      .col-sm-10
+        = @fundraising_request.organization_name
+    %br
+    .row
+      .col-sm-2
+        %b Email
+      .col-sm-10
+        = @fundraising_request.email
+    %br
+    .row
+      .col-sm-2
+        %b Date
+      .col-sm-10
+        = @fundraising_request.event_date&.strftime("%b %d, %Y")
+    %br
+    .row
+      .col-sm-2
+        %b Comments
+      .col-sm-10
+        = @fundraising_request.comments
+    
+    = link_to 'Back', fundraising_requests_path, class: "btn btn-default"
+

@@ -1,0 +1,29 @@
+%h1.text-center Fundraising Requests
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Organization
+      %th Email
+      %th Date
+      %th Comments
+      %th
+      %th
+      %th
+
+  %tbody
+    - @fundraising_requests.each do |fundraising_request|
+      %tr
+        %td= fundraising_request.name
+        %td= fundraising_request.organization_name
+        %td= fundraising_request.email
+        %td= fundraising_request.event_date&.strftime("%b %d, %Y")
+        %td= fundraising_request.comments
+        %td= link_to 'Show', fundraising_request
+        %td= link_to 'Edit', edit_fundraising_request_path(fundraising_request)
+        %td= link_to 'Destroy', fundraising_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Fundraising request', new_fundraising_request_path, class: "btn btn-primary"

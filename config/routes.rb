@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :carousel_images
   resources :billing_addresses
+  resources :carousel_images
   resources :customers
+  resources :fundraising_requests
   devise_for :users
 
   resources :charges
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
       get "admin"
     end
   end
+
   resources :line_items do
     member do
       delete "remove_from_cart"
@@ -34,8 +36,12 @@ Rails.application.routes.draw do
     end
   end
 
+  get "fundraising", to: "fundraising_requests#new"
+  get "fundraising_request", to: "fundraising_requests#submitted", as: "fundraising_request_submitted"
+
   get "terms_and_conditions" => "dashboard#terms_and_conditions", as: "terms_and_conditions"
   get "privacy_policy" => "dashboard#privacy_policy", as: "privacy_policy"
+
   get "cart" => "checkout#cart", as: "cart"
   get "review_and_pay" => "checkout#review_and_pay", as: "review_and_pay"
   get "thank_you" => "checkout#thank_you", as: "thank_you"
