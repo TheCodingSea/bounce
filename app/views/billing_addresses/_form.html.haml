@@ -1,0 +1,28 @@
+= form_for @billing_address do |f|
+  - if @billing_address.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@billing_address.errors.count, "error")} prohibited this billing_address from being saved:"
+      %ul
+        - @billing_address.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :billing_name
+    = f.text_field :billing_name
+  .field
+    = f.label :address_1
+    = f.text_field :address_1
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :state
+    = f.text_field :state
+  .field
+    = f.label :zip
+    = f.text_field :zip
+  .field
+    = f.label :sale_id
+    = f.number_field :sale_id
+  .actions
+    = f.submit 'Save'

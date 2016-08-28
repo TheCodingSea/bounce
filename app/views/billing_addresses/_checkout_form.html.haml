@@ -1,0 +1,41 @@
+= form_for @billing_address do |f|
+  - if @billing_address.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@billing_address.errors.count, "error")} prohibited this billing_address from being saved:"
+      %ul
+        - @billing_address.errors.full_messages.each do |msg|
+          %li= msg
+
+  .row
+    .col-md-6
+      .form-group
+        .col-sm-3
+          = f.label :billing_name, "Name", class: "control-label"
+        .col-sm-9
+          = f.text_field :billing_name, class: "form-control"
+  .row
+    .col-md-6
+      .form-group
+        .col-sm-3
+          = f.label :address_1, "Address", class: "control-label"
+        .col-sm-9
+          = f.text_field :address_1, class: "form-control"
+    .col-md-6
+      .form-group
+        .col-sm-3
+          = f.label :city, class: "control-label"
+        .col-sm-9
+          = f.text_field :city, class: "form-control"
+  .row
+    .col-md-6
+      .form-group
+        .col-sm-3
+          = f.label :state, class: "control-label"
+        .col-sm-9
+          = f.text_field :state, class: "form-control"
+    .col-md-6
+      .form-group
+        .col-sm-3
+          = f.label :zip, class: "control-label"
+        .col-sm-9
+          = f.text_field :zip, class: "form-control"

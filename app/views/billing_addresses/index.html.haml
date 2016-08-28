@@ -1,0 +1,31 @@
+%h1 Listing billing_addresses
+
+%table
+  %thead
+    %tr
+      %th Billing name
+      %th Address 1
+      %th City
+      %th State
+      %th Zip
+      %th Sale
+      %th
+      %th
+      %th
+
+  %tbody
+    - @billing_addresses.each do |billing_address|
+      %tr
+        %td= billing_address.billing_name
+        %td= billing_address.address_1
+        %td= billing_address.city
+        %td= billing_address.state
+        %td= billing_address.zip
+        %td= billing_address.sale_id
+        %td= link_to 'Show', billing_address
+        %td= link_to 'Edit', edit_billing_address_path(billing_address)
+        %td= link_to 'Destroy', billing_address, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Billing address', new_billing_address_path

@@ -3,17 +3,17 @@
     %td.pull-right
       %strong Subtotal:
     %td
-      =number_to_currency @sale.subtotal
+      =number_to_currency @sale.calculate_subtotal
   %tr
     %td.pull-right
       %strong Tax:
     %td
-      =number_to_currency @sale.tax
+      =number_to_currency @sale.calculate_tax
   %tr
     %td.pull-right
       %strong Total:
     %td
-      =number_to_currency @sale.total
+      =number_to_currency @sale.calculate_total
   %tr
     %td.pull-right
       %strong Total Due Before Delivery:

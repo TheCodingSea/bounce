@@ -1,6 +1,7 @@
 class Sale < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
   has_one :rental_location, dependent: :destroy
+  has_one :billing_address, dependent: :destroy
   has_many :charges
   belongs_to :customer
 

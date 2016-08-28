@@ -1,6 +1,7 @@
 .panel.panel-default
   .panel-body
-    %h1.text-center.page-header Review and Pay
+    %a.btn.btn-default{href: cart_path} Back to Cart
+    %h1.text-center.page-header Checkout
     %table.table
       %tr
         %th Name
@@ -14,42 +15,64 @@
     .row
       .col-sm-4.col-sm-offset-8
         =render partial: "totals"
-    /.row
-    /  .col-sm-12
-    /    %h2.text-center Rental Location
-    /    %table.table
-    /      %tr
-    /        %th First Name
-    /        %th Last Name
-    /        %th Phone
-    /        %th Address 1
-    /        %th Address 2
-    /        %th City
-    /        %th State
-    /        %th Zip
-    /      %tr
-    /        %td=@rental_location.first_name
-    /        %td=@rental_location.last_name
-    /        %td=@rental_location.phone
-    /        %td=@rental_location.address_1
-    /        %td=@rental_location.address_2
-    /        %td=@rental_location.city
-    /        %td=@rental_location.state
-    /        %td=@rental_location.zip
-    /    %a.btn.btn-default{href: cart_path} Edit
     .row
-      .col-sm-3.col-sm-offset-9
-        =form_tag charges_path do
-          %article
-            -if flash[:error].present?
-              #error_explanation
-                %p=flash[:error]
-        
-          %script{src: "https://checkout.stripe.com/checkout.js",
-            "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
-            "data-name" => "Empire Events",
-            "data-description" => "Party Rental Checkout",
-            "data-amount" => "#{(@sale.calculate_total_before_delivery * 100)}",
-            "data-billing-address" => true,
-            "data-shipping-address" => true,
-            "data-locale" => "auto"}
+      .col-md-12
+        %h2.text-center Rental Location
+        %br
+        =render "rental_locations/checkout_form"
+        %br
+    .row
+      .col-md-10.col-md-offset-1
+        %hr
+    .row
+      .col-md-12
+        %h2.text-center Billing Address
+        %br
+        .row
+          .col-md-12
+            .form-group.text-center
+              %label Same as Shipping Address?
+              %input#same_billing_checkbox{type: "checkbox", checked: true}
+        .collapse#billing_address_section
+          =render "billing_addresses/checkout_form"
+    -#.row
+    -#  .col-sm-12
+    -#    %h2.text-center Rental Location
+    -#    %table.table
+    -#      %tr
+    -#        %th First Name
+    -#        %th Last Name
+    -#        %th Phone
+    -#        %th Address 1
+    -#        %th Address 2
+    -#        %th City
+    -#        %th State
+    -#        %th Zip
+    -#      %tr
+    -#        %td=@rental_location.first_name
+    -#        %td=@rental_location.last_name
+    -#        %td=@rental_location.phone
+    -#        %td=@rental_location.address_1
+    -#        %td=@rental_location.address_2
+    -#        %td=@rental_location.city
+    -#        %td=@rental_location.state
+    -#        %td=@rental_location.zip
+    -#    %a.btn.btn-default{href: cart_path} Edit
+    -#.row
+    -#  .col-sm-3.col-sm-offset-9
+    -#    =form_tag charges_path do
+    -#      %article
+    -#        -if flash[:error].present?
+    -#          #error_explanation
+    -#            %p=flash[:error]
+    -#    
+    -#      %script{src: "https://checkout.stripe.com/checkout.js",
+    -#        "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+    -#        "data-name" => "Empire Events",
+    -#        "data-description" => "Party Rental Checkout",
+    -#        "data-amount" => "#{(@sale.calculate_total_before_delivery * 100)}",
+    -#        "data-billing-address" => true,
+    -#        "data-shipping-address" => true,
+    -#        "data-locale" => "auto"}
+:coffee
+  $("#same_billing_checkbox").change(=>$("#billing_address_section").collapse('toggle'))
